@@ -1,0 +1,9 @@
+.container {
+    padding: 3em 4em;
+}
+
+.bottomRightContainer {
+    position: absolute;
+    top: 85%;
+    right: 5em;
+}
