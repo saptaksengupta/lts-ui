@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { ContainerLayoutRow, DefaultContainerLayout, ContainerLayoutColumn } from '../../styled/CommonUtils';
 import { Card } from '../../styled/cards';
 import styled from 'styled-components';
+import {AuthContext} from '../../../context/AuthContext';
 
 const StyledNavidationBar = styled(Card)`
     width: 100%;
@@ -42,6 +43,8 @@ const StyledProfileInfo = styled(ContainerLayoutColumn)`
 
 
 const NavigationBar = () => {
+    // const {isAuthenticated} = useContext(AuthContextProvider);
+    console.log(useContext(AuthContext));
     return (
         <ContainerLayoutRow fullWitdth>
             <StyledNavidationBar>

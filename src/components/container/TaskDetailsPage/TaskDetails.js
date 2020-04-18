@@ -5,7 +5,8 @@ import styles from './taskDetails.module.css';
 
 import styled from 'styled-components';
 import { DefaultButton } from '../../styled/Buttons';
- 
+import AuthContextProvider from '../../../context/AuthContext';
+
 
 const CircularButton = styled(DefaultButton)`
     border-radius: 50%;
@@ -25,17 +26,19 @@ const TaskDetails = () => {
 
     return (
         <Fragment>
-            <div className={styles.container}>
-                <NavigationBar />
-                <div style={{marginTop: '5em'}} >   
-                    <TasklBoard />
+            <AuthContextProvider>
+                <div className={styles.container}>
+                    <NavigationBar />
+                    <div style={{ marginTop: '5em' }} >
+                        <TasklBoard />
+                    </div>
                 </div>
-            </div>
-            <div className={styles.bottomRightContainer}>
-                <CircularButton primary>
-                    +
+                <div className={styles.bottomRightContainer}>
+                    <CircularButton primary>
+                        +
                 </CircularButton>
-            </div>
+                </div>
+            </AuthContextProvider>
         </Fragment>
     )
 }
