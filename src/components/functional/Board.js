@@ -55,7 +55,7 @@ const EditBoardIcon = styled(ContainerLayoutRow)`
 const Board = (props) => {
     return (
         <StyledBoards>
-            <StyledBoardContainer>
+            <StyledBoardContainer alignment="center">
                 <EditBoardIcon alignment="end">
                     <EditIcon fill="#efefef" height="2em" width="2em" />
                 </EditBoardIcon>

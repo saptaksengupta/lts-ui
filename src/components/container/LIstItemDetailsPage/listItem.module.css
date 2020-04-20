@@ -51,10 +51,16 @@
   color: #eeffee;
   font-size: 1.5em;
   font-weight: 500;
+  flex: 1;
 }
 
 .listDetails .listDescription {
   font-size: 1em;
   font-weight: 400;
   color: whitesmoke;
+}
+
+.listActions svg{
+    margin: 0 0.5em;
+    cursor: pointer;
 }
