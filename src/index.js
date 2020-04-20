@@ -10,9 +10,14 @@ const GlobalStyle = createGlobalStyle`
   body {
     background: #c3cfe2;  /* fallback for old browsers */
     background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
     padding: 0px;
     margin: 0px;
     font-size: 16px;
+    letter-spacing: 0.1em;
     font-weight: bold;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

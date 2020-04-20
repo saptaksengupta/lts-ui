@@ -49,11 +49,11 @@ const NavigationBar = () => {
         <ContainerLayoutRow fullWitdth>
             <StyledNavidationBar>
                 <ContainerLayoutRow></ContainerLayoutRow>
-                <ContainerLayoutRow fullWitdth>
+                <ContainerLayoutRow alignment="center" fullWitdth>
                     <StyledAvatar> SS </StyledAvatar>
                     <StyledProfileInfo>
                         <div style={{ fontSize: '2em' }}>Saptak Sengupta</div>
-                        <div style={{ fontSize: '1.5em', fontWeight: '400', margin: '7px 0' }}>We are here with your Task List So Far</div>
+                        <div style={{ fontSize: '1.3em', fontWeight: '300', margin: '7px 0' }}>We are here with your Task List So Far</div>
                     </StyledProfileInfo>
                 </ContainerLayoutRow>
             </StyledNavidationBar>

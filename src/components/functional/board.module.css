@@ -1,0 +1,15 @@
+.boardIcon {
+    height: 100%;
+    margin-top: -3em;
+    margin-left: -3em;
+}
+
+.boardTitle{
+    font-size: 2em;
+}
+
+.boardDescription {
+    font-size: 0.9em;
+    font-weight: 300;
+    margin-top: 0.4em;
+}
