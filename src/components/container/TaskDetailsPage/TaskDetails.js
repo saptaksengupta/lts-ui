@@ -1,12 +1,12 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import NavigationBar from './NavigationBar';
 import TasklBoard from './TaskBoard';
 import styles from './taskDetails.module.css';
 
 import styled from 'styled-components';
 import { DefaultButton } from '../../styled/Buttons';
-import AuthContextProvider from '../../../context/AuthContext';
 import { AddIcon } from '../../styled/Icons';
+import BoardContextProvider from '../../../context/BoardContext';
 
 
 const CircularButton = styled(DefaultButton)`
@@ -23,26 +23,21 @@ const CircularButton = styled(DefaultButton)`
 `;
 
 const TaskDetails = () => {
-
-    useEffect(() => {
-        // TODO: Fetch the user details, and set it inside authContext
-    }, []);
-
     return (
         <Fragment>
-            <AuthContextProvider>
+            <BoardContextProvider>
                 <div className={styles.container}>
                     <NavigationBar />
                     <div style={{ marginTop: '5em', marginLeft: '3em' }} >
                         <TasklBoard />
                     </div>
                 </div>
-                <div className={styles.bottomRightContainer}>
+                {/* <div className={styles.bottomRightContainer}>
                     <CircularButton className={styles.circularPrimayBtn} primary>
-                        <AddIcon height="2em" width="2em"/>    
+                        <AddIcon height="2em" width="2em" />
                     </CircularButton>
-                </div>
-            </AuthContextProvider>
+                </div> */}
+            </BoardContextProvider>
         </Fragment>
     )
 }

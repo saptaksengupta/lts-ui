@@ -15,3 +15,11 @@ export const LtsTextBox = styled.input`
     color: #efefef;
     text-align:center;
 `;
+
+
+export const LtsHiddenTextBox = styled.input.attrs({
+    placeholder: props => 'some place holder'
+})`
+    width: 100%;
+    background: transparent;
+`;

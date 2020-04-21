@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useContext } from 'react';
 
 import CurvedHeader from './CurvedHeader';
 import LoginForm from './LoginForm';
@@ -9,7 +9,7 @@ const HomePage = () => {
     return (
         <Fragment>
             <CurvedHeader />
-            <ContainerLayoutColumn>
+            <ContainerLayoutColumn alignment="center">
                 <LoginForm></LoginForm>
             </ContainerLayoutColumn>
         </Fragment>

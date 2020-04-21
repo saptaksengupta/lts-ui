@@ -13,3 +13,24 @@
     font-weight: 300;
     margin-top: 0.4em;
 }
+
+.titleInput {
+    border: none;
+    font-size: 2em;
+    width: 100%;
+    background: transparent;
+    margin-bottom: 0.2em;
+}
+
+.titleInput:focus, 
+.descriptionInput:focus {
+    outline: none;
+}
+
+.descriptionInput {
+    border: none;
+    font-size: 0.9em;
+    font-weight: 300;
+    width: 100%;
+    background: transparent;
+}
