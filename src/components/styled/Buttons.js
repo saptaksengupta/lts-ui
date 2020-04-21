@@ -17,3 +17,16 @@ export const DefaultButton = styled(Button)`
     color: ${ props => props.primary ? '#efefef' : '#182848' };
     border: ${ props => props.primary ? 'none' : '2px solid #182848' };
 `;
+
+export const CircularButton = styled(DefaultButton)`
+    border-radius: 50%;
+    height: 4em;
+    width: 4em;
+    background: #4b6cb7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #182848, #4b6cb7);
+    background: linear-gradient(to left, #182848, #4b6cb7);
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    cursor:pointer;
+`;

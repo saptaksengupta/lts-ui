@@ -6,7 +6,6 @@ export const BoardContext = createContext();
 
 const BoardContextProvider = (props) => {
     const [boards, dispatch] = useReducer(BoardReducer, []);
-    console.log(dispatch);
     return (
         <BoardContext.Provider value={{boards, dispatch}}>
             {props.children}
