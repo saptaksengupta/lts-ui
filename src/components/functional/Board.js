@@ -3,13 +3,16 @@ import styles from './board.module.css';
 import styled from 'styled-components';
 import { DefaultCard, Card } from '../styled/cards';
 import { ContainerLayoutRow, StraightLine, ContainerLayoutColumn } from '../styled/CommonUtils';
-import { GroceriesIcon, EditIcon, AddIcon, TickIcon, ClockIcon } from '../styled/Icons';
+import { GroceriesIcon, EditIcon, AddIcon, CalendarIcon, ClockIcon } from '../styled/Icons';
 import { CircularButton } from '../styled/Buttons';
 import axios from 'axios';
 import { getBaseUrl } from '../../Config';
 import { AuthContext } from '../../context/AuthContext';
 import { BoardContext } from '../../context/BoardContext';
 import { BOARD_ACTIONS } from '../../reducers/BoardReducer';
+import { useHistory, Redirect } from 'react-router-dom';
+import { APP_BASE_URL } from '../../Config';
+
 const StyledBoardContainer = styled(ContainerLayoutColumn)`
     justify-content: flex-start;
     height:12em;
@@ -76,12 +79,33 @@ const Board = (props) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [showAddBtn, setShowAddBtn] = useState(false);
+    const history = useHistory();
     const { user } = useContext(AuthContext);
     const { dispatch } = useContext(BoardContext);
 
+    const { boardDetails } = props;
     // useEffect(() => {
-        
+
     // }, []);
+
+
+    const getFormattedTime = (timestamp) => {
+        const d = new Date(timestamp);
+        return d.toLocaleTimeString();
+    }
+
+    const getFormattedDate = (timestamp) => {
+        const d = new Date(timestamp);
+        return d.toLocaleDateString();
+    }
+
+    const onBoardClicked = (boardId) => {
+        history.push(`/board/${boardId}/list`);
+    }
+
+    const onRemoveClicked = () => {
+
+    }
 
     const onBoardAddClicked = (name, description, userId, dispatch) => {
         if (!name || !description) {
@@ -101,10 +125,10 @@ const Board = (props) => {
 
     return (
         props.mode === "edit" ?
-            <StyledBoards>
+            <StyledBoards onClick={() => onBoardClicked(boardDetails.id)}>
                 <StyledBoardContainer alignment="center">
                     <EditBoardIcon alignment="end">
-                        <EditIcon fill="#efefef" height="2em" width="2em" />
+                        <EditIcon fill="#efefef" height="2em" width="2em" onClick={() => onRemoveClicked(boardDetails.id)} />
                     </EditBoardIcon>
                     <ContainerLayoutRow style={{ flex: '1' }}>
                         <div className={styles.boardIcon}>
@@ -114,10 +138,10 @@ const Board = (props) => {
                         </div>
                         <div style={{ paddingLeft: '2em', paddingRight: '2em' }}>
                             <ContainerLayoutRow className={styles.boardTitle}>
-                                {props.boardDetails ? props.boardDetails.name : ''}
+                                {boardDetails ? boardDetails.name : ''}
                             </ContainerLayoutRow>
                             <ContainerLayoutRow className={styles.boardDescription}>
-                                {props.boardDetails ? props.boardDetails.description : ''}
+                                {boardDetails ? boardDetails.description : ''}
                             </ContainerLayoutRow>
                         </div>
                     </ContainerLayoutRow>
@@ -125,19 +149,19 @@ const Board = (props) => {
                     <ContainerLayoutRow style={{ paddingRight: '2.5em', paddingBottom: '0.7em' }} fullWidth alignment="end">
                         <span style={{ paddingLeft: '3em', fontSize: '0.8em', fontWeight: '900', display: 'flex' }}>
                             <ContainerLayoutRow style={{ margin: '0 1em' }}>
-                                <TickIcon width="1.3em" fill="#efefef" />
-                                <span style={{ marginLeft: '0.3em' }}>12</span>
+                                <CalendarIcon width="1.3em" fill="#efefef" />
+                                <span style={{ marginLeft: '0.3em' }}>{getFormattedDate(boardDetails.created_at)}</span>
                             </ContainerLayoutRow>
                             <ContainerLayoutRow>
                                 <ClockIcon width="1.6em" fill="#efefef" />
-                                <span style={{ marginLeft: '0.3em' }}>12</span>
+                                <span style={{ marginLeft: '0.3em' }}> {getFormattedTime(boardDetails.created_at)} </span>
                             </ContainerLayoutRow>
                         </span>
-                        <ContainerLayoutRow alignment="end">
+                        {/* <ContainerLayoutRow alignment="end">
                             <StyledAvatars>AD</StyledAvatars>
                             <StyledAvatars>SS</StyledAvatars>
                             <StyledAvatars>MJ</StyledAvatars>
-                        </ContainerLayoutRow>
+                        </ContainerLayoutRow> */}
                     </ContainerLayoutRow>
                 </StyledBoardContainer>
             </StyledBoards>
@@ -154,13 +178,13 @@ const Board = (props) => {
                             <ContainerLayoutRow>
                                 <input type="text" value={title}
                                     onChange={(e) => setTitle(e.target.value)}
-                                    onBlur={(e) =>  title && description ? setShowAddBtn(true) : setShowAddBtn(false)}
+                                    onBlur={(e) => title && description ? setShowAddBtn(true) : setShowAddBtn(false)}
                                     placeholder="Let's Do Something" className={styles.titleInput} />
                             </ContainerLayoutRow>
                             <ContainerLayoutRow>
                                 <input type="text" value={description}
                                     onChange={(e) => setDescription(e.target.value)}
-                                    onBlur={(e) =>  title && description ? setShowAddBtn(true) : setShowAddBtn(false)}
+                                    onBlur={(e) => title && description ? setShowAddBtn(true) : setShowAddBtn(false)}
                                     placeholder="Some Description in short about this board" className={styles.descriptionInput} />
                             </ContainerLayoutRow>
                         </div>
@@ -170,7 +194,7 @@ const Board = (props) => {
                             <StyledCircularAddBtn primary onClick={() => onBoardAddClicked(title, description, user.id, dispatch)} >
                                 <AddIcon height="1em" width="1em" fill="#efefef" />
                             </StyledCircularAddBtn>
-                        </ContainerLayoutRow>) : (<ContainerLayoutRow style={{minHeight: '4em'}}></ContainerLayoutRow>)
+                        </ContainerLayoutRow>) : (<ContainerLayoutRow style={{ minHeight: '4em' }}></ContainerLayoutRow>)
                     }
                 </StyledBoardContainer>
             </StyledBoardInCreateMode>
