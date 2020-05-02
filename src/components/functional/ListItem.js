@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-
+import socketIOClient from 'socket.io-client';
 import styled from 'styled-components';
 import { ContainerLayoutRow, ContainerLayoutColumn, DefaultContainerLayoutFlex } from '../styled/CommonUtils';
 
@@ -12,7 +12,7 @@ import { LIST_ACTIONS } from '../../reducers/ListReducer';
 import { ListContext } from '../../context/ListItemContext';
 import { AuthContext } from '../../context/AuthContext';
 
-import { getBaseUrl } from '../../Config';
+import { getBaseUrl, getSocketBaseUrl, SOCKET_EVENTS } from '../../Config';
 
 const StyledListItem = styled(ContainerLayoutRow)`
     position: relative;
@@ -47,8 +47,7 @@ const ListItem = (props) => {
             modifiedBy: user.id
         }).then(resp => {
             const listItem = resp.data.data;
-            dispatch({ type: LIST_ACTIONS.CHANGE_STATUS, payload: { listItemId, listItem } })
-            setListItemDetails(listItem);
+            handleOnListUpdate(LIST_ACTIONS.CHANGE_STATUS, listItemId, listItem);
         }).catch(err => {
             console.log(err);
         });
@@ -56,7 +55,7 @@ const ListItem = (props) => {
 
     const debounce = (fn, duration) => {
         let timer;
-        return function() {
+        return function () {
             let context = this, args = arguments;
             clearTimeout(timer);
             timer = setTimeout(() => {
@@ -71,8 +70,7 @@ const ListItem = (props) => {
             description: updatedDesc
         }).then(resp => {
             const listItem = resp.data.data;
-            dispatch({ type: LIST_ACTIONS.EDIT_DESCRIPTION, payload: { listItemId, listItem } })
-            setListItemDetails(listItem);
+            handleOnListUpdate(LIST_ACTIONS.EDIT_DESCRIPTION, listItemId, listItem);
         }).catch(err => {
             console.log(err);
         });
@@ -84,8 +82,18 @@ const ListItem = (props) => {
         return true;
     }
 
+    const handleOnListUpdate = (type, listItemId, listItem) => {
+        dispatch({ type: type, payload: { listItemId, listItem } })
+        setListItemDetails(listItem);
+    }
+
     useEffect(() => {
         setListItemDetails(listItem);
+        const socketUrl = getSocketBaseUrl('list-and-boards');
+        const socketCon = socketIOClient(socketUrl);
+        socketCon.on(`${SOCKET_EVENTS.LIST_ITEM_MODIFIED}${listItem.id}`, (data) => {
+            handleOnListUpdate(LIST_ACTIONS.CHANGE_STATUS, data.data.id, data.data);
+        });
     }, [listItem]);
 
     return (
@@ -97,7 +105,7 @@ const ListItem = (props) => {
                 </div>
                 <StyledListDetailsCard className={styles.listCardFancyBackground}>
                     <ContainerLayoutRow>
-                        <div className={styles.listHeading} contentEditable={listItemDetails.isDone ? 'false' : 'true'} suppressContentEditableWarning={true} onBlur={e => onListItemDescChanged.bind(this, listItemDetails.id, e.target.innerHTML)() } style={{ flex: 1 }}>{listItemDetails.description}</div>
+                        <div className={styles.listHeading} contentEditable={listItemDetails.isDone ? 'false' : 'true'} suppressContentEditableWarning={true} onBlur={e => onListItemDescChanged.bind(this, listItemDetails.id, e.target.innerHTML)()} style={{ flex: 1 }}>{listItemDetails.description}</div>
                         {/* <div className={styles.listDescription}>Some description and some extra text which is big</div> */}
                         <ContainerLayoutRow className={styles.listActions}>
                             {
@@ -112,7 +120,7 @@ const ListItem = (props) => {
                                     )
                             }
                             <div>
-                                <TrashIcon width="1em" fill="#efefef" height="1em" />
+                                <TrashIcon width="1em" fill={listItemDetails.isDone ? '#182848' : '#efefef'} height="1em" />
                             </div>
                         </ContainerLayoutRow>
                     </ContainerLayoutRow>

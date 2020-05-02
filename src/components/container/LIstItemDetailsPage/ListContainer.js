@@ -1,11 +1,12 @@
 import React, { useReducer, useContext, useEffect, useState } from 'react';
+import socketIOClient from 'socket.io-client';
 import styles from "./listItem.module.css";
 import styled from 'styled-components';
 import ListItem from '../../functional/ListItem';
 import { ContainerLayoutRow, ContainerLayoutColumn } from '../../styled/CommonUtils';
 import ListContextProvider, { ListContext } from '../../../context/ListItemContext';
 import { LIST_ACTIONS } from '../../../reducers/ListReducer';
-import { getBaseUrl } from '../../../Config';
+import { getBaseUrl, getSocketBaseUrl, SOCKET_EVENTS } from '../../../Config';
 
 import { Card } from '../../styled/cards';
 import { AddIcon, TrashIcon } from '../../styled/Icons';
@@ -21,7 +22,7 @@ const AddNewListForm = styled(Card)`
 const ListContainer = (props) => {
     const { user } = useContext(AuthContext);
     const [newTodoDesc, setNewTodoDesc] = useState('');
-    const {listItemState, dispatch } = useContext(ListContext);
+    const { listItemState, dispatch } = useContext(ListContext);
     const { currentBoard } = props;
 
     const onTodoAddBtnClicked = () => {
@@ -30,8 +31,8 @@ const ListContainer = (props) => {
             .then((resp) => {
                 if (resp.data.data) {
                     const listItem = resp.data.data;
-                    dispatch({ type: LIST_ACTIONS.SET_LIST, payload: {listItem} });
-                    dispatch({type: LIST_ACTIONS.SET_CURRENT_BOARD, payload: {currentBoard: props.currentBoard}});
+                    // dispatch({ type: LIST_ACTIONS.SET_LIST, payload: { listItem } });
+                    dispatch({ type: LIST_ACTIONS.SET_CURRENT_BOARD, payload: { currentBoard: props.currentBoard } });
                     setNewTodoDesc('');
                 }
             })
@@ -42,9 +43,25 @@ const ListContainer = (props) => {
     }
 
     useEffect(() => {
-        props.listItems.map(listItem => dispatch({ type: LIST_ACTIONS.SET_LIST, payload: {listItem} }) );
-        dispatch({type: LIST_ACTIONS.SET_CURRENT_BOARD, payload: {currentBoard: props.currentBoard}});
+        const socketUrl = getSocketBaseUrl('list-and-boards');
+        const socketCon = socketIOClient(socketUrl);
+        socketCon.on(SOCKET_EVENTS.LIST_ITEM_ADDED, handleOnListAdd);
+
+        return () => {
+            socketCon.removeListener(SOCKET_EVENTS.LIST_ITEM_ADDED, handleOnListAdd);
+        };
+    }, []);
+
+    useEffect(() => {
+        props.listItems.map(listItem => dispatch({ type: LIST_ACTIONS.SET_LIST, payload: { listItem } }));
+        dispatch({ type: LIST_ACTIONS.SET_CURRENT_BOARD, payload: { currentBoard: props.currentBoard } });
     }, [props.listItems, props.currentBoard]);
+
+
+    const handleOnListAdd = (data) => {
+        const listItem = data.data;
+        dispatch({ type: LIST_ACTIONS.SET_LIST, payload: { listItem } });
+    }
 
     const itemListJsx = listItemState.listItems.map((listItem, index) => {
         return (<ListItem key={index} listItem={listItem} />)
