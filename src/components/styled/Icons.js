@@ -1,9 +1,51 @@
 import React from 'react';
 
+export const RevertIcon = (props) => {
+    return (
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            viewBox="0 0 52.502 52.502" style={{enableBackground: "new 0 0 52.502 52.502" }} height = { props.height } width = { props.width } fill = { props.fill }>
+            <path d="M51.718,50.857l-1.341-2.252C40.075,31.295,25.975,32.357,22.524,32.917v13.642L0,23.995L22.524,1.644v13.43
+	c0.115,0,0.229-0.001,0.344-0.001c12.517,0,18.294,5.264,18.542,5.496c13.781,11.465,10.839,27.554,10.808,27.715L51.718,50.857z
+	 M25.505,30.735c5.799,0,16.479,1.923,24.993,14.345c0.128-4.872-0.896-15.095-10.41-23.012c-0.099-0.088-5.935-5.364-18.533-4.975
+	l-1.03,0.03V6.447L2.832,24.001l17.692,17.724V31.311l0.76-0.188C21.338,31.109,22.947,30.735,25.505,30.735z"/>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+        </svg>
+    )
+}
+
 export const ClockIcon = (props) => {
     return (
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            viewBox="0 0 60 60" enable-background="new 0 0 60 60" height={props.height} width={props.width} fill={props.fill} >
+            viewBox="0 0 60 60" style={{enableBackground: "new 0 0 60 60" }} height={props.height} width={props.width} fill={props.fill} >
             <g>
                 <path d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30
 		S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z"/>
@@ -60,7 +102,7 @@ export const ClockIcon = (props) => {
 export const TrashIcon = (props) => {
     return (
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            viewBox="0 0 59 59" enable-background="new 0 0 59 59" height={props.height} width={props.width} fill={props.fill}>
+            viewBox="0 0 59 59" style={{enableBackground: "new 0 0 59 59"}} height={props.height} width={props.width} fill={props.fill}>
             <g>
                 <path d="M29.5,51c0.552,0,1-0.447,1-1V17c0-0.553-0.448-1-1-1s-1,0.447-1,1v33C28.5,50.553,28.948,51,29.5,51z" />
                 <path d="M19.5,51c0.552,0,1-0.447,1-1V17c0-0.553-0.448-1-1-1s-1,0.447-1,1v33C18.5,50.553,18.948,51,19.5,51z" />
@@ -109,7 +151,7 @@ export const TrashIcon = (props) => {
 export const TickIcon = (props) => {
     return (
         <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" fill={props.fill}
-            viewBox="0 0 512 512" enable-background="new 0 0 512 512" width={props.width} height={props.height}>
+            viewBox="0 0 512 512" style={{ enableBackground: 'new 0 0 512 512' }} width={props.width} height={props.height}>
             <g>
                 <g>
                     <path d="M504.502,75.496c-9.997-9.998-26.205-9.998-36.204,0L161.594,382.203L43.702,264.311c-9.997-9.998-26.205-9.997-36.204,0
@@ -153,7 +195,7 @@ export const TickIcon = (props) => {
 
 export const CalendarIcon = (props) => {
     return (
-        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" 
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
             viewBox="0 0 58 58" enable-background="new 0 0 58 58" height={props.height} width={props.width} fill={props.fill} >
             <g>
                 <path d="M26,2.5c1.654,0,3,1.346,3,3s-1.346,3-3,3c-0.553,0-1,0.447-1,1s0.447,1,1,1c2.757,0,5-2.243,5-5s-2.243-5-5-5
@@ -236,7 +278,7 @@ export const EditIcon = (props) => {
 
 export const AddIcon = (props) => {
     return (
-        <svg id="_x31__x2C_5_px" enable-background="new 0 0 24 24" height={props.height} fill={props.fill} viewBox="0 0 24 24" width={props.width} xmlns="http://www.w3.org/2000/svg"><path d="m17.5 24c-3.584 0-6.5-2.916-6.5-6.5s2.916-6.5 6.5-6.5 6.5 2.916 6.5 6.5-2.916 6.5-6.5 6.5zm0-11.5c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z" /><path d="m17.5 21c-.414 0-.75-.336-.75-.75v-5.5c0-.414.336-.75.75-.75s.75.336.75.75v5.5c0 .414-.336.75-.75.75z" /><path d="m20.25 18.25h-5.5c-.414 0-.75-.336-.75-.75s.336-.75.75-.75h5.5c.414 0 .75.336.75.75s-.336.75-.75.75z" /><path d="m9.19 21h-6.44c-1.517 0-2.75-1.233-2.75-2.75v-15.5c0-1.517 1.233-2.75 2.75-2.75h11.5c1.517 0 2.75 1.233 2.75 2.75v6.09c0 .414-.336.75-.75.75s-.75-.336-.75-.75v-6.09c0-.689-.561-1.25-1.25-1.25h-11.5c-.689 0-1.25.561-1.25 1.25v15.5c0 .689.561 1.25 1.25 1.25h6.44c.414 0 .75.336.75.75s-.336.75-.75.75z" /><path d="m13.25 9.5h-9.5c-.414 0-.75-.336-.75-.75s.336-.75.75-.75h9.5c.414 0 .75.336.75.75s-.336.75-.75.75z" /><path d="m9.25 13.5h-5.5c-.414 0-.75-.336-.75-.75s.336-.75.75-.75h5.5c.414 0 .75.336.75.75s-.336.75-.75.75z" /><path d="m8.25 5.5h-4.5c-.414 0-.75-.336-.75-.75s.336-.75.75-.75h4.5c.414 0 .75.336.75.75s-.336.75-.75.75z" /></svg>
+        <svg id="_x31__x2C_5_px" enableBackground="new 0 0 24 24" height={props.height} fill={props.fill} viewBox="0 0 24 24" width={props.width} xmlns="http://www.w3.org/2000/svg"><path d="m17.5 24c-3.584 0-6.5-2.916-6.5-6.5s2.916-6.5 6.5-6.5 6.5 2.916 6.5 6.5-2.916 6.5-6.5 6.5zm0-11.5c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z" /><path d="m17.5 21c-.414 0-.75-.336-.75-.75v-5.5c0-.414.336-.75.75-.75s.75.336.75.75v5.5c0 .414-.336.75-.75.75z" /><path d="m20.25 18.25h-5.5c-.414 0-.75-.336-.75-.75s.336-.75.75-.75h5.5c.414 0 .75.336.75.75s-.336.75-.75.75z" /><path d="m9.19 21h-6.44c-1.517 0-2.75-1.233-2.75-2.75v-15.5c0-1.517 1.233-2.75 2.75-2.75h11.5c1.517 0 2.75 1.233 2.75 2.75v6.09c0 .414-.336.75-.75.75s-.75-.336-.75-.75v-6.09c0-.689-.561-1.25-1.25-1.25h-11.5c-.689 0-1.25.561-1.25 1.25v15.5c0 .689.561 1.25 1.25 1.25h6.44c.414 0 .75.336.75.75s-.336.75-.75.75z" /><path d="m13.25 9.5h-9.5c-.414 0-.75-.336-.75-.75s.336-.75.75-.75h9.5c.414 0 .75.336.75.75s-.336.75-.75.75z" /><path d="m9.25 13.5h-5.5c-.414 0-.75-.336-.75-.75s.336-.75.75-.75h5.5c.414 0 .75.336.75.75s-.336.75-.75.75z" /><path d="m8.25 5.5h-4.5c-.414 0-.75-.336-.75-.75s.336-.75.75-.75h4.5c.414 0 .75.336.75.75s-.336.75-.75.75z" /></svg>
     )
 }
 

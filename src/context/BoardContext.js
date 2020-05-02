@@ -1,4 +1,4 @@
-import React, { Component, createContext, useReducer } from 'react';
+import React, { createContext, useReducer } from 'react';
 import { BoardReducer } from '../reducers/BoardReducer';
 
 

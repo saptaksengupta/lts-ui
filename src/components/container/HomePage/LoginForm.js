@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 
 import styles from './homePage.module.css';
 
@@ -6,8 +6,18 @@ import { ContainerLayoutColumn, ContainerLayoutRow } from '../../styled/CommonUt
 import { Card } from '../../styled/cards';
 import { LtsTextBox } from '../../styled/Inputs';
 import { DefaultButton } from '../../styled/Buttons';
+import { useHistory } from 'react-router-dom';
+
+import { AuthContext } from '../../../context/AuthContext';
 
 const LoginForm = () => {
+
+    const history = useHistory();
+    const {user} = useContext(AuthContext);
+    const onBoardClicked = (boardId) => {
+        history.push(`/boards/${user.id}/lists`);
+    }
+
     return (
         <Fragment>
             <div className={styles.loginContainer}>
@@ -25,7 +35,7 @@ const LoginForm = () => {
                 </Card>
                 <div style={{ marginTop: '15px', width: '100%' }}>
                     <ContainerLayoutRow>
-                        <DefaultButton primary> Let's Get Started </DefaultButton>
+                        <DefaultButton primary onClick={() => onBoardClicked()}> Let's Get Started </DefaultButton>
                     </ContainerLayoutRow>
                 </div>
             </div>

@@ -1,42 +1,54 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext, useEffect, Suspense, useState } from 'react';
+import axios from 'axios';
 import NavigationHeader from './NavigationHeader';
 import ListInfoCard from './ListInfoCard';
 import styled from 'styled-components';
-import ListItem from '../../functional/ListItem';
-
 import { ContainerLayoutRow, ContainerLayoutColumn } from '../../styled/CommonUtils';
+import ListContainer from './ListContainer';
+import { getBaseUrl } from '../../../Config';
+import { Card } from '../../styled/cards';
+import { AddIcon, TrashIcon } from '../../styled/Icons';
+
+import AuthContextProvider, { AuthContext } from '../../../context/AuthContext';
+import ListContextProvider, { ListContext } from '../../../context/ListItemContext';
+import { LIST_ACTIONS } from '../../../reducers/ListReducer';
+import BoardContextProvider from '../../../context/BoardContext';
 
 const StyledListPageContainer = styled.div`   
-    margin: 1em;
+    // margin: -2em;
+    // width: 100%;
 `;
 
-const ListItemPage = () => {
+const ListItemPage = (props) => {
+
+    const { user } = useContext(AuthContext);
+    const { boardId } = props.match.params;
+    const [listItems, setListItems] = useState([]);
+    const [boardDetails, setBoardDetails] = useState(null);
+
+    useEffect(() => {
+        axios.get(`${getBaseUrl()}boards/${boardId}`, { params: { userId: user.id } })
+            .then(resp => {
+                setBoardDetails(resp.data.data.board);
+                setListItems(resp.data.data.board.listItems);
+            }).catch((err) => {
+                console.log(err);
+            })
+    }, [boardId])
+
     return (
-        <StyledListPageContainer>
-            <ListInfoCard />
-            <div style={{ marginTop: '5em', marginLeft: '5em', }}>
-                <ContainerLayoutRow>
-                    <ContainerLayoutColumn style={{flex: 1}} alignment="center">
-                        <ListItem />
-                        <ListItem />
-                        <ListItem />
-                        <ListItem />
-                        <ListItem />
-                        <ListItem />
-                        <ListItem />
-                    </ContainerLayoutColumn>
-                    <ContainerLayoutColumn style={{flex: 1}} alignment="center">
-                        <ListItem />
-                        <ListItem />
-                        <ListItem />
-                        <ListItem />
-                        <ListItem />
-                        <ListItem />
-                        <ListItem />
-                    </ContainerLayoutColumn>
-                </ContainerLayoutRow>
-            </div>
-        </StyledListPageContainer>
+        <Fragment>
+            <AuthContextProvider>
+                <BoardContextProvider>
+                    <StyledListPageContainer>
+                        <ListInfoCard />
+                    </StyledListPageContainer>
+                </BoardContextProvider>
+            </AuthContextProvider>
+            <ListContextProvider>
+                <ListContainer listItems={listItems} currentBoard={boardDetails} />
+            </ListContextProvider>
+        </Fragment>
     )
 }
 

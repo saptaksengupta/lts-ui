@@ -22,7 +22,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         {getProtectedRoute('/user/todo-board', TaskDetailsPage, user)}
-        {getProtectedRoute('/boards/1/lists', ListItemPage, user)}
+        {getProtectedRoute('/boards/:boardId/lists', ListItemPage, user)}
       </Switch>
     </BrowserRouter>
   );

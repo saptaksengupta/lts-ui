@@ -6,6 +6,11 @@
   background-size: cover;
 }
 
+.listHeader {
+  padding: 1em;
+  width: auto;
+}
+
 .listCardFancyBackground {
   background: #5c258d; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -19,39 +24,77 @@
     #5c258d
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+.timeLineContainer {
+  position: relative;
+  /* top: 255px; */
+  bottom: 2em;
+}
+
+.addNewListContainer {
+  position: fixed;
+  z-index: 1000;
+  color: black;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0.8;
+}
 
 .listDetails {
-  border-left: 3px solid #182848;
-  padding-left: 3em;
-  position: relative;
-  min-height: 9em;
+  border-left: 5px solid #182848;
+  /* position: relative; */
+  min-height: 7.5em;
+}
+
+.timelineActionIcon {
+  position: absolute;
+  left: 5em;
+  background: #9ba0e6;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #9ba0e6;
 }
 
 .time {
-  margin-right: 3em;
   position: relative;
-  color: #6b6fff;
-}
-
-.time::after {
-  content: "";
-  position: absolute;
-  width: 0.5em;
-  height: 0.5em;
-  right: -3.5em;
-  background-color: #f5f7fa;
-  border: 3px solid #182848;
-  top: 0px;
-  border-radius: 50%;
-  z-index: 1;
+  color: #182848;
+  font-size: 0.8em;
+  min-width: 6em;
+  padding: 0.5em;
+  text-align: center;
 }
 
 .listDetails .listHeading {
   margin: 0.2em 0;
   color: #eeffee;
-  font-size: 1.5em;
+  font-size: 0.7em;
   font-weight: 500;
   flex: 1;
+}
+
+.listHeading:focus{
+  outline: none;
+}
+
+.listIsDone .listCardFancyBackground {
+  background-color: darkgray;
+  opacity: 0.7;
+}
+.listIsDone .time{
+  color: green;
+}
+
+.listIsDone .listHeading{
+  text-decoration: line-through;
+  text-decoration-color: #182848;
+}
+
+.listIsDone .listDetails{
+  border-left-color: green;
 }
 
 .listDetails .listDescription {
@@ -60,7 +103,37 @@
   color: whitesmoke;
 }
 
-.listActions svg{
-    margin: 0 0.5em;
-    cursor: pointer;
+.listActions {
+  flex: 0;
+}
+
+.listActions svg {
+  margin: 0 0.5em;
+  cursor: pointer;
+}
+
+.titleInput {
+  border: none;
+  font-size: 1em;
+  width: 100%;
+  background: transparent;
+  margin-bottom: 0.2em;
+  color: #efefef;
+}
+
+.titleInput::placeholder {
+  color: #efefef;
+}
+
+.titleInput:focus {
+  outline: none;
+}
+
+.actions {
+  flex: 1;
+  padding: 1em;
+}
+
+.actions svg {
+  margin: 5px;
 }

@@ -111,7 +111,7 @@ const Board = (props) => {
         if (!name || !description) {
             return false;
         }
-        const addBoardUrl = `${getBaseUrl()}board`
+        const addBoardUrl = `${getBaseUrl()}boards/`;
         axios.post(addBoardUrl, { name, description, userId })
             .then((resp) => {
                 const boardAdded = resp.data.data;
