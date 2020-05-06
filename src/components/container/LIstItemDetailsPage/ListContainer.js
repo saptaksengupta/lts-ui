@@ -47,8 +47,26 @@ const ListContainer = (props) => {
         const socketCon = socketIOClient(socketUrl);
         socketCon.on(SOCKET_EVENTS.LIST_ITEM_ADDED, handleOnListAdd);
 
+        socketCon.on(SOCKET_EVENTS.LIST_ITEM_DELETED, (data) => {
+            const listItemId = data.data;
+            dispatch({ type: LIST_ACTIONS.REMOVE_LIST, payload: { listItemId } });
+        });
+
+        socketCon.on(SOCKET_EVENTS.LIST_ITEM_DESC_UPDATED, (data) => {
+            const listItem = data.data;
+            const listItemId = listItem.id;
+            dispatch({ type: LIST_ACTIONS.EDIT_DESCRIPTION, payload: { listItemId, listItem } });
+        });
+
+        socketCon.on(`${SOCKET_EVENTS.LIST_ITEM_STATUS_UPDATED}`, (data) => {
+            const listItem = data.data;
+            const listItemId = listItem.id;
+            debugger;
+            dispatch({type: LIST_ACTIONS.CHANGE_STATUS, payload: {listItemId, listItem} });
+        });
+
         return () => {
-            socketCon.removeListener(SOCKET_EVENTS.LIST_ITEM_ADDED, handleOnListAdd);
+            // socketCon.removeListener(SOCKET_EVENTS.LIST_ITEM_ADDED, handleOnListAdd);
         };
     }, []);
 

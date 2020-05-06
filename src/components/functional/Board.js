@@ -100,7 +100,7 @@ const Board = (props) => {
     }
 
     const onBoardClicked = (boardId) => {
-        history.push(`/board/${boardId}/list`);
+        history.push(`/boards/${boardId}/lists`);
     }
 
     const onRemoveClicked = () => {

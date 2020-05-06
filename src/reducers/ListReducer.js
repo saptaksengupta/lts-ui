@@ -12,6 +12,7 @@ export const ListReducer = (state, action) => {
     switch (action.type) {
         case LIST_ACTIONS.SET_LIST:
             return {
+                ...state,
                 listItems: [...state.listItems, action.payload.listItem]
             };
         case LIST_ACTIONS.SET_CURRENT_BOARD:
@@ -19,8 +20,10 @@ export const ListReducer = (state, action) => {
                 ...state,
                 currentBoard: action.payload.currentBoard
             };
-        // case LIST_ACTIONS.REMOVE_LIST:
-        //     return state.listItems.filter(list => list.id != action.payload.listId);
+        case LIST_ACTIONS.REMOVE_LIST:
+            debugger
+            const final = {...state, listItems: getFilterdListItems(state, action)};
+            return final;
         case LIST_ACTIONS.EDIT_DESCRIPTION:
             return {
                 ...state,
@@ -28,8 +31,8 @@ export const ListReducer = (state, action) => {
             };
         case LIST_ACTIONS.CHANGE_STATUS:
             return {
+                ...state,
                 listItems: getUpdatedStateBasedOnCondition(state, action),
-                ...state
             };
     }
 }
@@ -42,4 +45,8 @@ const getUpdatedStateBasedOnCondition = (state, action) => {
         }
         return listItem;
     });
-} 
+}
+
+const getFilterdListItems = (state, action) => {
+    return state.listItems.filter(list => list.id != action.payload.listItemId);
+}

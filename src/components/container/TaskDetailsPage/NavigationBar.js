@@ -13,7 +13,7 @@ const StyledNavidationBar = styled(Card)`
     border-radius: 10px;
 `;
 
-const StyledAvatar = styled.div`
+export const StyledAvatar = styled.div`
     height: 150px;
     min-width: 150px;
     display:flex;

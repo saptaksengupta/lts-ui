@@ -1,9 +1,103 @@
 import React from 'react';
 
+
+export const TimeIcon = (props) => {
+    return (
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            viewBox="0 0 512 512" style={{enableBackground:"new 0 0 512 512"}} height={props.height} width={props.width} fill={props.fill}>
+            <g transform="translate(1 1)">
+                <g>
+                    <g>
+                        <path d="M255-1C113.618-1-1,113.618-1,255s114.618,256,256,256s256-114.618,256-256S396.382-1,255-1z M255,468.333
+				c-117.818,0-213.333-95.515-213.333-213.333S137.182,41.667,255,41.667S468.333,137.182,468.333,255S372.818,468.333,255,468.333
+				z"/>
+                        <path d="M255,84.333c-11.782,0-21.333,9.551-21.333,21.333v128h-64c-11.782,0-21.333,9.551-21.333,21.333
+				s9.551,21.333,21.333,21.333H255c11.782,0,21.333-9.551,21.333-21.333V105.667C276.333,93.885,266.782,84.333,255,84.333z"/>
+                    </g>
+                </g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+        </svg>
+    )
+}
+
+export const LeftArrow = (props) => {
+    return (
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            viewBox="0 0 54 54" style={{enablBackground: "new 0 0 54 54"}} height={props.height} width={props.width} fill={props.fill}>
+            <g>
+                <path d="M27,0C12.112,0,0,12.112,0,27s12.112,27,27,27s27-12.112,27-27S41.888,0,27,0z M27,52C13.215,52,2,40.785,2,27
+		S13.215,2,27,2s25,11.215,25,25S40.785,52,27,52z"/>
+                <path d="M40,26H15.414l8.293-8.293l-1.414-1.414L11.586,27l10.707,10.707l1.414-1.414L15.414,28H40c0.552,0,1-0.447,1-1
+		S40.552,26,40,26z"/>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+        </svg>
+    )
+}
+
 export const RevertIcon = (props) => {
     return (
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            viewBox="0 0 52.502 52.502" style={{enableBackground: "new 0 0 52.502 52.502" }} height = { props.height } width = { props.width } fill = { props.fill }>
+            viewBox="0 0 52.502 52.502" style={{ enableBackground: "new 0 0 52.502 52.502" }} height={props.height} width={props.width} fill={props.fill}>
             <path d="M51.718,50.857l-1.341-2.252C40.075,31.295,25.975,32.357,22.524,32.917v13.642L0,23.995L22.524,1.644v13.43
 	c0.115,0,0.229-0.001,0.344-0.001c12.517,0,18.294,5.264,18.542,5.496c13.781,11.465,10.839,27.554,10.808,27.715L51.718,50.857z
 	 M25.505,30.735c5.799,0,16.479,1.923,24.993,14.345c0.128-4.872-0.896-15.095-10.41-23.012c-0.099-0.088-5.935-5.364-18.533-4.975
@@ -45,7 +139,7 @@ export const RevertIcon = (props) => {
 export const ClockIcon = (props) => {
     return (
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            viewBox="0 0 60 60" style={{enableBackground: "new 0 0 60 60" }} height={props.height} width={props.width} fill={props.fill} >
+            viewBox="0 0 60 60" style={{ enableBackground: "new 0 0 60 60" }} height={props.height} width={props.width} fill={props.fill} >
             <g>
                 <path d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30
 		S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z"/>
@@ -102,7 +196,7 @@ export const ClockIcon = (props) => {
 export const TrashIcon = (props) => {
     return (
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            viewBox="0 0 59 59" style={{enableBackground: "new 0 0 59 59"}} height={props.height} width={props.width} fill={props.fill}>
+            viewBox="0 0 59 59" style={{ enableBackground: "new 0 0 59 59" }} height={props.height} width={props.width} fill={props.fill}>
             <g>
                 <path d="M29.5,51c0.552,0,1-0.447,1-1V17c0-0.553-0.448-1-1-1s-1,0.447-1,1v33C28.5,50.553,28.948,51,29.5,51z" />
                 <path d="M19.5,51c0.552,0,1-0.447,1-1V17c0-0.553-0.448-1-1-1s-1,0.447-1,1v33C18.5,50.553,18.948,51,19.5,51z" />

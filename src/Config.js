@@ -13,6 +13,8 @@ export const APP_BASE_URL = `http://localhost:3000/`;
 
 
 export const SOCKET_EVENTS = {
-    LIST_ITEM_MODIFIED: 'listItemUpdated-',
-    LIST_ITEM_ADDED: 'listItemAdded-',
+    LIST_ITEM_STATUS_UPDATED: 'listItemUpdated',
+    LIST_ITEM_ADDED: 'listItemAdded',
+    LIST_ITEM_DELETED: 'listItemDeleted',
+    LIST_ITEM_DESC_UPDATED: 'listItemDescUpdated'
 }

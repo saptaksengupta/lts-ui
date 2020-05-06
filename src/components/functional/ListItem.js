@@ -47,7 +47,18 @@ const ListItem = (props) => {
             modifiedBy: user.id
         }).then(resp => {
             const listItem = resp.data.data;
-            handleOnListUpdate(LIST_ACTIONS.CHANGE_STATUS, listItemId, listItem);
+            // handleOnListUpdate(LIST_ACTIONS.CHANGE_STATUS, listItemId, listItem);
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    const onDeleteClicked = (listItemId) => {
+        axios.delete(`${getBaseUrl()}boards/${currentBoard.id}/list-items/${listItemId}`, {
+            modifiedBy: user.id
+        }).then(resp => {
+            const listItem = resp.data.data;
+            dispatch({ type: LIST_ACTIONS.REMOVE_LIST, payload: { listItemId } });
         }).catch(err => {
             console.log(err);
         });
@@ -69,8 +80,9 @@ const ListItem = (props) => {
             modifiedBy: user.id,
             description: updatedDesc
         }).then(resp => {
-            const listItem = resp.data.data;
-            handleOnListUpdate(LIST_ACTIONS.EDIT_DESCRIPTION, listItemId, listItem);
+            if(resp.data.status == 200) {
+                console.log('TODO: SHOW SUCCESS ALERT')
+            }
         }).catch(err => {
             console.log(err);
         });
@@ -89,11 +101,6 @@ const ListItem = (props) => {
 
     useEffect(() => {
         setListItemDetails(listItem);
-        const socketUrl = getSocketBaseUrl('list-and-boards');
-        const socketCon = socketIOClient(socketUrl);
-        socketCon.on(`${SOCKET_EVENTS.LIST_ITEM_MODIFIED}${listItem.id}`, (data) => {
-            handleOnListUpdate(LIST_ACTIONS.CHANGE_STATUS, data.data.id, data.data);
-        });
     }, [listItem]);
 
     return (
@@ -119,7 +126,7 @@ const ListItem = (props) => {
                                         </div>
                                     )
                             }
-                            <div>
+                            <div onClick={e => onDeleteClicked(listItemDetails.id)}>
                                 <TrashIcon width="1em" fill={listItemDetails.isDone ? '#182848' : '#efefef'} height="1em" />
                             </div>
                         </ContainerLayoutRow>
