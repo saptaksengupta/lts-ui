@@ -36,3 +36,23 @@ export const ContainerLayoutColumn = styled(DefaultContainerLayoutFlex)`
     width: ${props => props.fullWitdth ? '100%' : ''};
 `;
 
+
+
+export const StyledAvatar = styled.div`
+    height: 150px;
+    min-width: 150px;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    background-color: yellow;
+    padding: 0px;
+    color: #efefef;
+    font-size: 5em;
+    border-radius: 50%;
+    font-weight: 300;
+    margin: 0 10px;
+    background: #EC6F66;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F3A183, #EC6F66); 
+    background: linear-gradient(to right, #F3A183, #EC6F66); 
+    letter-spacing: 3px;
+`;

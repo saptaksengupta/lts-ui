@@ -15,7 +15,8 @@ const LoginForm = () => {
     const history = useHistory();
     const {user} = useContext(AuthContext);
     const onBoardClicked = (boardId) => {
-        history.push(`/boards/${user.id}/lists`);
+        // history.push(`/boards/${user.id}/lists`);
+        history.push('/user/todo-board');
     }
 
     return (

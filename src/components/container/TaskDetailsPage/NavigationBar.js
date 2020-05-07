@@ -1,8 +1,10 @@
-import React, {useContext} from 'react';
-import { ContainerLayoutRow, DefaultContainerLayout, ContainerLayoutColumn } from '../../styled/CommonUtils';
-import { Card } from '../../styled/cards';
+import React, { useContext } from 'react';
+import { ContainerLayoutRow, DefaultContainerLayout, ContainerLayoutColumn, StyledAvatar } from '../../styled/CommonUtils';
+import { Card, DefaultCard } from '../../styled/cards';
 import styled from 'styled-components';
-import {AuthContext} from '../../../context/AuthContext';
+import { AuthContext } from '../../../context/AuthContext';
+import { StyledJumbothron } from "../LIstItemDetailsPage/ListInfoCard";
+import { AddIcon } from '../../styled/Icons';
 
 const StyledNavidationBar = styled(Card)`
     width: 100%;
@@ -13,52 +15,68 @@ const StyledNavidationBar = styled(Card)`
     border-radius: 10px;
 `;
 
-export const StyledAvatar = styled.div`
-    height: 150px;
-    min-width: 150px;
-    display:flex;
-    justify-content:center;
-    align-items: center;
-    background-color: yellow;
-    padding: 0px;
+export const StyledJumbothronBoardPage = styled.div`
+    // margin-top: 2em;
+    min-height: 10em;
     color: #efefef;
-    font-size: 5em;
-    border-radius: 50%;
-    font-weight: 300;
-    margin: 0 10px;
-    background: #EC6F66;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #F3A183, #EC6F66); 
-    background: linear-gradient(to right, #F3A183, #EC6F66); 
-    letter-spacing: 3px;
+    width: 100%;
+    z-index: 2;
+    border-radius: 10px;
+    min-width: auto;
+    background: transparent;
+    padding: 0 0.6em;
+    margin: 1em;
+    margin-bottom: 0;
 `;
+
 
 const StyledProfileInfo = styled(ContainerLayoutColumn)`
     color: #efefef;
     font-weight: 1.5em;
     align-items: flex-start;
-    margin: 0 10px;
+    margin: 2em 10px;
 `;
-
-
-
 
 const NavigationBar = () => {
     // const {isAuthenticated} = useContext(AuthContextProvider);
     console.log(useContext(AuthContext));
     return (
         <ContainerLayoutRow fullWitdth>
-            <StyledNavidationBar>
+            <StyledJumbothronBoardPage>
                 <ContainerLayoutRow></ContainerLayoutRow>
                 <ContainerLayoutRow alignment="center" fullWitdth>
-                    <StyledAvatar> SS </StyledAvatar>
                     <StyledProfileInfo>
-                        <div style={{ fontSize: '2em' }}>Saptak Sengupta</div>
-                        <div style={{ fontSize: '1.3em', fontWeight: '300', margin: '7px 0' }}>We are here with your Task List So Far</div>
+                        <div style={{ width: '100%', display: 'flex', flexDirection: "row", alignItems: "center" }}>
+                            <div style={{ fontSize: '3em', marginBottom: '0.1em', flex: "1" }}>Hello, </div>
+                            <div>
+                                <AddIcon width="2.5em" heigh="2.5em" fill="#efefef" ></AddIcon>
+                            </div>
+                        </div>
+                        <div style={{ fontSize: '2.5em' }}>Saptak Sengupta</div>
+                        <div style={{ fontSize: '1.2em', fontWeight: '300', margin: '1em 0' }}>
+                            We are here with your Task List So Far, Now You can share every "Board details" with your friends.
+                            and get your Task Done as a whole team
+                        </div>
                     </StyledProfileInfo>
                 </ContainerLayoutRow>
-            </StyledNavidationBar>
+            </StyledJumbothronBoardPage>
         </ContainerLayoutRow>
     )
 }
 
 export default NavigationBar;
+
+
+
+// <ContainerLayoutRow fullWitdth>
+        //     <StyledNavidationBar>
+        //         <ContainerLayoutRow></ContainerLayoutRow>
+        //         <ContainerLayoutRow alignment="center" fullWitdth>
+        //             <StyledAvatar> SS </StyledAvatar>
+        //             <StyledProfileInfo>
+        //                 <div style={{ fontSize: '2em' }}>Saptak Sengupta</div>
+        //                 <div style={{ fontSize: '1.3em', fontWeight: '300', margin: '7px 0' }}>We are here with your Task List So Far</div>
+        //             </StyledProfileInfo>
+        //         </ContainerLayoutRow>
+        //     </StyledNavidationBar>
+        // </ContainerLayoutRow>

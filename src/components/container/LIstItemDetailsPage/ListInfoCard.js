@@ -2,10 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import styles from "./listItem.module.css";
 import { DefaultCard } from '../../styled/cards';
-import { ContainerLayoutRow, ContainerLayoutColumn } from '../../styled/CommonUtils';
+import { ContainerLayoutRow, ContainerLayoutColumn, StyledAvatar } from '../../styled/CommonUtils';
 import { LeftArrow, CalendarIcon, TimeIcon, TickIcon, ClockIcon } from '../../styled/Icons';
-
-import { StyledAvatar } from '../TaskDetailsPage/NavigationBar';
 
 const StyledSmallAvatar = styled(StyledAvatar)`
     height: 1.5em;
@@ -16,7 +14,7 @@ const StyledSmallAvatar = styled(StyledAvatar)`
     font-weight: bold;
 `;
 
-const StyledJumbothron = styled(DefaultCard)`
+export const StyledJumbothronListPage = styled.div`
     // margin-top: 2em;
     min-height: 10em;
     color: #efefef;
@@ -31,7 +29,7 @@ const StyledJumbothron = styled(DefaultCard)`
 const ListInfoCard = () => {
     return (
         <div className={styles.listHeader}>
-            <StyledJumbothron>
+            <StyledJumbothronListPage>
                 <ContainerLayoutColumn style={{ minHeight: '10em', borderBottom: '1px solid #efefef', paddingBottom: '0.6em' }}>
                     <ContainerLayoutRow style={{ flex: '1', alignItems: "flex-start" }}>
                         <ContainerLayoutRow align="start" style={{ alignItems: 'center' }}>
@@ -68,7 +66,7 @@ const ListInfoCard = () => {
                         <span style={{marginLeft: '0.3em'}}>12</span>
                     </ContainerLayoutRow>
                 </ContainerLayoutRow>
-            </StyledJumbothron>
+            </StyledJumbothronListPage>
         </div>
     )
 }

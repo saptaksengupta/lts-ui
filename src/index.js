@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 import { createGlobalStyle } from 'styled-components'
 import AuthContextProvider from './context/AuthContext';
+import ResponsiveContextProvider from './context/ResponsiveContext';
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -23,7 +24,6 @@ const GlobalStyle = createGlobalStyle`
     font-size: 16px;
     letter-spacing: 0.1em;
     font-weight: bold;
-    margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -34,10 +34,12 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthContextProvider>
-      <GlobalStyle />
-      <App />
-    </AuthContextProvider>
+    <ResponsiveContextProvider>
+      <AuthContextProvider>
+        <GlobalStyle />
+        <App />
+      </AuthContextProvider>
+    </ResponsiveContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

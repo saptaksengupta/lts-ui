@@ -24,11 +24,11 @@ const CircularButton = styled(DefaultButton)`
 
 const TaskDetails = () => {
     return (
-        <Fragment>
+        <div style={{minHeight: '100vh'}}>
             <BoardContextProvider>
                 <div className={styles.container}>
                     <NavigationBar />
-                    <div style={{ marginTop: '5em', marginLeft: '3em' }} >
+                    <div style={{ padding: '0em', marginBottom: '1em', flex: '1' }} >
                         <TasklBoard />
                     </div>
                 </div>
@@ -38,7 +38,7 @@ const TaskDetails = () => {
                     </CircularButton>
                 </div> */}
             </BoardContextProvider>
-        </Fragment>
+        </div>
     )
 }
 
