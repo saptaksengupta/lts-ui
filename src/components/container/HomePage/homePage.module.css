@@ -33,10 +33,33 @@
 
 }
 
+.userAvatar{
+  /* animation: slideUp 1s ease forwards, glowUp 2s ease forwards; */
+}
+
 .loginContainer { 
-    margin-top: -200px;
-    z-index: 1;
-    min-width: 420px;
+    min-width: 350px;
+    animation: slideUp 1s ease forwards, glowUp 2s ease forwards;
+}
+
+@keyframes glowUp {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate(0, 10%);
+  }
+
+  to {
+    transform: translate(0, 0);
+  }
 }
 
 .inputGroup{
@@ -45,8 +68,9 @@
 }
 
 .inputGroup label{
-    font-weight: bold;
-    font-family: sans-serif; 
+    font-weight: 300;
+    font-family: sans-serif;
+    font-size: 1.3em; 
 }
 
 .inputGroup input {

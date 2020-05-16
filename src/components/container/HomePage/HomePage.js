@@ -3,15 +3,20 @@ import React, { Fragment, useEffect, useContext } from 'react';
 import CurvedHeader from './CurvedHeader';
 import LoginForm from './LoginForm';
 
-import { ContainerLayoutColumn } from '../../styled/CommonUtils';
+import { ContainerLayoutColumn, ContainerLayoutRow } from '../../styled/CommonUtils';
+import { ResponsiveContext } from '../../../context/ResponsiveContext';
+import { SUPPORTED_DEVICES } from '../../../reducers/ResponsiveReducer'
+
 
 const HomePage = () => {
+    const { responsiveState } = useContext(ResponsiveContext);
+    const currentDevice = responsiveState.device;
     return (
         <Fragment>
-            <CurvedHeader />
-            <ContainerLayoutColumn alignment="center">
+            <ContainerLayoutRow alignment="center" style={{height: '100%'}}>
+                {currentDevice === SUPPORTED_DEVICES.MOBILE ? '' : <CurvedHeader />}
                 <LoginForm></LoginForm>
-            </ContainerLayoutColumn>
+            </ContainerLayoutRow>
         </Fragment>
     )
 }

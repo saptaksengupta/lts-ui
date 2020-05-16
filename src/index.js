@@ -11,7 +11,7 @@ import ResponsiveContextProvider from './context/ResponsiveContext';
 const GlobalStyle = createGlobalStyle`
   html, body {
     min-height: 100%;
-    height: auto;
+    // height: auto;
     background: #c3cfe2;  /* fallback for old browsers */
     // background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     background: linear-gradient(63.55deg, #E58DFB 18.89%, rgba(242, 191, 255, 0.47) 115.55%);

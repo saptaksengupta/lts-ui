@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 
 
-const Button = styled.button`
-    color: #efefef;
+export const Button = styled.button`
+    color: #182848;
     height: 60px;
     border-radius: 5px;
     font-size: 20px;
     width: 100%;
-    -webkit-box-shadow: 1px 15px 50px 5px rgba(24,40,72,1);    
-    -moz-box-shadow: 1px 15px 50px 5px rgba(24,40,72,1);
-    box-shadow: 1px 15px 50px 5px rgba(24,40,72,1);
+    // -webkit-box-shadow: 1px 15px 50px 5px rgba(24,40,72,1);    
+    // -moz-box-shadow: 1px 15px 50px 5px rgba(24,40,72,1);
+    // box-shadow: 1px 15px 50px 5px rgba(24,40,72,1);
+    background: transparent;
+    border: 1px solid #182848
 `;
 
 export const DefaultButton = styled(Button)`
