@@ -20,14 +20,14 @@ const AddNewListForm = styled(Card)`
 `;
 
 const ListContainer = (props) => {
-    const { user } = useContext(AuthContext);
+    const { authState } = useContext(AuthContext);
     const [newTodoDesc, setNewTodoDesc] = useState('');
     const { listItemState, dispatch } = useContext(ListContext);
     const { currentBoard } = props;
 
     const onTodoAddBtnClicked = () => {
         axios
-            .post(`${getBaseUrl()}boards/${currentBoard.id}/list-items`, { userId: user.id, description: newTodoDesc })
+            .post(`${getBaseUrl()}boards/${currentBoard.id}/list-items`, { userId: authState.user.id, description: newTodoDesc })
             .then((resp) => {
                 if (resp.data.data) {
                     const listItem = resp.data.data;

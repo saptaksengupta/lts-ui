@@ -1,9 +1,11 @@
 .curvedHeader {
-  clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 70%);
-  min-height: 500px;
+  clip-path: polygon(0 0, 100% 0%, 80% 100%, 0 100%);
+  min-height: 100%;
+  min-width: 50%;
   background-repeat: no-repeat;
   background-position: center;
-  background: #5d4157; /* fallback for old browsers */
+  background-color: #3f3d56;
+  /* background: #5d4157; 
   background: -webkit-linear-gradient(
     to top,
     #a8caba,
@@ -13,33 +15,40 @@
     to top,
     #a8caba,
     #5d4157
-  ); 
+  );  */
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  color: white;
+  align-items: center;
+  color: #182848;
 }
 
 .curvedHeader .title {
-    font-size: 25px;
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 35px;
+  min-height: 30%;
+  font-size: 25px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .curvedHeader .title h1 {
-    margin: 5px 0;
-
+  margin: 5px 0;
 }
 
-.userAvatar{
+.imageContainer{
+  padding-top: 10em;
+  animation: slideLeft 0.5s ease-in forwards, glowUp 0.5s ease-in forwards;
+}
+
+.userAvatar {
   /* animation: slideUp 1s ease forwards, glowUp 2s ease forwards; */
 }
 
-.loginContainer { 
-    min-width: 350px;
-    animation: slideUp 1s ease forwards, glowUp 2s ease forwards;
+.loginContainer {
+  min-width: 350px;
+  animation: slideUp 1s ease forwards, glowUp 2s ease forwards;
 }
 
 @keyframes glowUp {
@@ -49,6 +58,16 @@
 
   to {
     opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translate(-10%, 0);
+  }
+
+  to {
+    transform: translate(0, 0);
   }
 }
 
@@ -62,17 +81,17 @@
   }
 }
 
-.inputGroup{
-    width: 100%;
-    margin: 10px 0;
+.inputGroup {
+  width: 100%;
+  margin: 10px 0;
 }
 
-.inputGroup label{
-    font-weight: 300;
-    font-family: sans-serif;
-    font-size: 1.3em; 
+.inputGroup label {
+  font-weight: 300;
+  font-family: sans-serif;
+  font-size: 1.3em;
 }
 
 .inputGroup input {
-    margin-top: 10px;
+  margin-top: 10px;
 }

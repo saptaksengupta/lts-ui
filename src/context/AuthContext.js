@@ -1,24 +1,24 @@
-import React, { Component, createContext } from 'react';
+import React, { Component, createContext, useReducer } from 'react';
+import { UserReducer, isUserExist, getUserDetails } from '../reducers/UserReducer'
 
 export const AuthContext = createContext();
 
-class AuthContextProvider extends Component {
-    state = {
-        isAuthenticeted: true,
-        user: {
-            id: 5,
-            name: 'Saptak Sengupta',
-            phone: '8013778491'
-        }
-    }
+const AuthContextProvider = (props) => {
+    const initialAuthState = {
+        isAuthenticeted: false,
+        user: null
+    };
 
-    render() {
-        return (
-            <AuthContext.Provider value={{ ...this.state }}>
-                {this.props.children}
-            </AuthContext.Provider>
-        );
+    if(isUserExist()) {
+        initialAuthState.user = getUserDetails();
     }
+    const [authState, dispatch] = useReducer(UserReducer, initialAuthState);
+
+    return (
+        <AuthContext.Provider value={{ authState, dispatch }}>
+            {props.children}
+        </AuthContext.Provider>
+    );
 }
 
 export default AuthContextProvider;

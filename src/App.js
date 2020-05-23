@@ -8,7 +8,7 @@ import ListItemPage from './components/container/LIstItemDetailsPage/LIstItemPag
 import { AuthContext } from './context/AuthContext';
 function App() {
 
-  const { user } = useContext(AuthContext);
+  const { authState } = useContext(AuthContext);
 
   const getProtectedRoute = (path, component, user) => {
     if (!user) {
@@ -21,8 +21,8 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={HomePage} />
-        {getProtectedRoute('/user/todo-board', TaskDetailsPage, user)}
-        {getProtectedRoute('/boards/:boardId/lists', ListItemPage, user)}
+        {getProtectedRoute('/user/todo-board', TaskDetailsPage, authState.user)}
+        {getProtectedRoute('/boards/:boardId/lists', ListItemPage, authState.user)}
       </Switch>
     </BrowserRouter>
   );

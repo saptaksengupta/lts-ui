@@ -1,8 +1,13 @@
+
+export const USER_ACTIONS = {
+    SET_USER: 'SET_USER',
+}
+
 export const UserReducer = (state, action) => {
     switch (action.type) {
         case 'SET_USER':
             if (!isUserExist()) {
-                return storeUserDetails();
+                return storeUserDetails(action.payload.userDetails);
             }
             return state;
         default:
@@ -16,11 +21,11 @@ export const isUserExist = () => {
 }
 
 export const storeUserDetails = (userDetails) => {
-    localStorage.setItem('user', userDetails);
+    localStorage.setItem('userDetails', JSON.stringify(userDetails));
     return getUserDetails();
 }
 
 export const getUserDetails = () => {
-    return JSON.parse(localStorage.userDetails);
+    return JSON.parse(localStorage.getItem('userDetails'));
 }
 

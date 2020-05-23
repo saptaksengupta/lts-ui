@@ -38,29 +38,29 @@ const getBoardsByUserId = (userId, dispatch) => {
     });
 }
 const TasklBoard = () => {
-    const { user } = useContext(AuthContext);
+    const { authState } = useContext(AuthContext);
     const { boards, dispatch } = useContext(BoardContext);
     const { responsiveState } = useContext(ResponsiveContext);
     const currentDevice = responsiveState.device;
     useEffect(() => {
         // TODO: Fetch the user details, and set it inside authContext
-        getBoardsByUserId(user.id, dispatch);
+        getBoardsByUserId(authState.user.id, dispatch);
 
     }, []);
 
 
     const boardsArray = boards.map( (board) => {
-        if (currentDevice === SUPPORTED_DEVICES.MOBILE) {
+        if (currentDevice === SUPPORTED_DEVICES.MOBILE || 
+            currentDevice === SUPPORTED_DEVICES.LEARGE_PC || 
+            currentDevice === SUPPORTED_DEVICES.SMALL_PC) {
             return (<BoardSm boardDetails={board} key={board.id} />)
-        } else {
-            return (<Board boardDetails={board} mode="edit" key={board.id} />);
-        }
+        } 
     });
 
 
     return (
         <Fragment>
-            {(currentDevice === SUPPORTED_DEVICES.MOBILE) ? (
+            {(currentDevice === SUPPORTED_DEVICES.MOBILE || currentDevice === SUPPORTED_DEVICES.LEARGE_PC || currentDevice === SUPPORTED_DEVICES.SMALL_PC)  ? (
                 <StyledBoardContainerSm>
                     {boardsArray}
                 </StyledBoardContainerSm>

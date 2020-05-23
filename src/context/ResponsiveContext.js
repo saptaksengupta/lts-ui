@@ -5,7 +5,7 @@ export const ResponsiveContext = createContext();
 
 const ResponsiveContextProvider = (props) => {
     const initialState = {
-        device: SUPPORTED_DEVICES.MOBILE,
+        device: SUPPORTED_DEVICES.SMALL_PC
     }
 
     const [responsiveState, dispatch] = useReducer(ResponsiveReducer, initialState);

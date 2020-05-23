@@ -20,13 +20,13 @@ const StyledListPageContainer = styled.div`
 
 const ListItemPage = (props) => {
 
-    const { user } = useContext(AuthContext);
+    const { authState } = useContext(AuthContext);
     const { boardId } = props.match.params;
     const [listItems, setListItems] = useState([]);
     const [boardDetails, setBoardDetails] = useState(null);
 
     useEffect(() => {
-        axios.get(`${getBaseUrl()}boards/${boardId}`, { params: { userId: user.id } })
+        axios.get(`${getBaseUrl()}boards/${boardId}`, { params: { userId: authState.user.id } })
             .then(resp => {
                 setBoardDetails(resp.data.data.board);
                 setListItems(resp.data.data.board.listItems);

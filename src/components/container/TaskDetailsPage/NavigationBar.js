@@ -37,9 +37,16 @@ const StyledProfileInfo = styled(ContainerLayoutColumn)`
     margin: 2em 10px;
 `;
 
+
+
 const NavigationBar = () => {
-    // const {isAuthenticated} = useContext(AuthContextProvider);
-    console.log(useContext(AuthContext));
+    const { authState } = useContext(AuthContext);
+
+
+    const getAuthUsername = () => {
+        return authState.user.name;
+    }
+
     return (
         <ContainerLayoutRow fullWitdth>
             <StyledJumbothronBoardPage>
@@ -52,7 +59,7 @@ const NavigationBar = () => {
                                 <AddIcon width="2.5em" heigh="2.5em" fill="#efefef" ></AddIcon>
                             </div>
                         </div>
-                        <div style={{ fontSize: '2.5em' }}>Saptak Sengupta</div>
+                        <div style={{ fontSize: '2.5em' }}>{ getAuthUsername() }</div>
                         <div style={{ fontSize: '1.2em', fontWeight: '300', margin: '1em 0' }}>
                             We are here with your Task List So Far, Now You can share every "Board details" with your friends.
                             and get your Task Done as a whole team

@@ -35,7 +35,7 @@ const StyledListDetailsCard = styled(DefaultCard)`
 
 const ListItem = (props) => {
 
-    const { user } = useContext(AuthContext);
+    const { authState } = useContext(AuthContext);
     const { listItemState, dispatch } = useContext(ListContext);
     const { currentBoard } = listItemState;
     const { listItem } = props;
@@ -44,7 +44,7 @@ const ListItem = (props) => {
     const onListToggle = (listItemId) => {
         console.log(currentBoard);
         axios.put(`${getBaseUrl()}boards/${currentBoard.id}/list-items/${listItemId}/change`, {
-            modifiedBy: user.id
+            modifiedBy: authState.user.id
         }).then(resp => {
             const listItem = resp.data.data;
             // handleOnListUpdate(LIST_ACTIONS.CHANGE_STATUS, listItemId, listItem);
@@ -55,7 +55,7 @@ const ListItem = (props) => {
 
     const onDeleteClicked = (listItemId) => {
         axios.delete(`${getBaseUrl()}boards/${currentBoard.id}/list-items/${listItemId}`, {
-            modifiedBy: user.id
+            modifiedBy: authState.user.id
         }).then(resp => {
             const listItem = resp.data.data;
             dispatch({ type: LIST_ACTIONS.REMOVE_LIST, payload: { listItemId } });
@@ -77,7 +77,7 @@ const ListItem = (props) => {
 
     const doRestCallToUpdate = (listItemId, updatedDesc) => {
         axios.put(`${getBaseUrl()}boards/${currentBoard.id}/list-items/${listItemId}`, {
-            modifiedBy: user.id,
+            modifiedBy: authState.user.id,
             description: updatedDesc
         }).then(resp => {
             if(resp.data.status == 200) {

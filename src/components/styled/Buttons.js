@@ -11,7 +11,8 @@ export const Button = styled.button`
     // -moz-box-shadow: 1px 15px 50px 5px rgba(24,40,72,1);
     // box-shadow: 1px 15px 50px 5px rgba(24,40,72,1);
     background: transparent;
-    border: 1px solid #182848
+    border: 1px solid #182848;
+    cursor:pointer;
 `;
 
 export const DefaultButton = styled(Button)`

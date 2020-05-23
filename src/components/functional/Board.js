@@ -80,7 +80,7 @@ const Board = (props) => {
     const [description, setDescription] = useState('');
     const [showAddBtn, setShowAddBtn] = useState(false);
     const history = useHistory();
-    const { user } = useContext(AuthContext);
+    const { authState } = useContext(AuthContext);
     const { dispatch } = useContext(BoardContext);
 
     const { boardDetails } = props;
@@ -191,7 +191,7 @@ const Board = (props) => {
                     </ContainerLayoutRow>
                     {
                         showAddBtn ? (<ContainerLayoutRow alignment="end" style={{ paddingRight: '2em', paddingBottom: '1em' }}>
-                            <StyledCircularAddBtn primary onClick={() => onBoardAddClicked(title, description, user.id, dispatch)} >
+                            <StyledCircularAddBtn primary onClick={() => onBoardAddClicked(title, description, authState.user.id, dispatch)} >
                                 <AddIcon height="1em" width="1em" fill="#efefef" />
                             </StyledCircularAddBtn>
                         </ContainerLayoutRow>) : (<ContainerLayoutRow style={{ minHeight: '4em' }}></ContainerLayoutRow>)
