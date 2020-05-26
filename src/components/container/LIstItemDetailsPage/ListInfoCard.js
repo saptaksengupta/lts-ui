@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import styles from "./listItem.module.css";
 import { DefaultCard } from '../../styled/cards';
@@ -26,17 +27,26 @@ export const StyledJumbothronListPage = styled.div`
     padding: 0.6em;
 `;
 
-const ListInfoCard = () => {
+const ListInfoCard = (props) => {
+
+    const history = useHistory()
+    const { boardDetails } = props
+
+    const onBackArrowClicked = () => [
+        history.goBack()
+    ]
+
+
     return (
         <div className={styles.listHeader}>
             <StyledJumbothronListPage>
                 <ContainerLayoutColumn style={{ minHeight: '10em', borderBottom: '1px solid #efefef', paddingBottom: '0.6em' }}>
                     <ContainerLayoutRow style={{ flex: '1', alignItems: "flex-start" }}>
                         <ContainerLayoutRow align="start" style={{ alignItems: 'center' }}>
-                            <div>
+                            <div style={{ cursor: 'pointer' }} onClick={() => onBackArrowClicked()}>
                                 <LeftArrow width="1.8em" height="1.8em" fill="#efefef" />
                             </div>
-                            <span style={{ marginLeft: '0.2em', fontSize: '2em', fontWeight: 'bold', marginBottom: '6px' }}>Grocery Store</span>
+                            <span style={{ marginLeft: '0.2em', fontSize: '2em', fontWeight: 'bold', marginBottom: '6px' }}>{boardDetails.name}</span>
                         </ContainerLayoutRow>
                         <ContainerLayoutRow style={{ flex: '1' }} alignment="end">
                             <StyledSmallAvatar width="1.5em" height="1.5em" fill="#efefef" >ss</StyledSmallAvatar>
@@ -56,14 +66,14 @@ const ListInfoCard = () => {
                         </ContainerLayoutRow>
                     </ContainerLayoutRow>
                 </ContainerLayoutColumn>
-                <ContainerLayoutRow alignment="center" style={{paddingTop: '0.5em'}}>
-                    <ContainerLayoutRow alignment="end" style={{marginRight: '1em', alignItems: 'center'}}>
+                <ContainerLayoutRow alignment="center" style={{ paddingTop: '0.5em' }}>
+                    <ContainerLayoutRow alignment="end" style={{ marginRight: '1em', alignItems: 'center' }}>
                         <TickIcon width="1em" fill="#efefef" height="1em" />
-                        <span style={{marginLeft: '0.3em'}}>12</span>
+                        <span style={{ marginLeft: '0.3em' }}>12</span>
                     </ContainerLayoutRow>
-                    <ContainerLayoutRow style={{alignItems: 'center', marginLeft: '1em'}}>
-                        <ClockIcon width="1em" fill="#efefef" height="1em" style={{marginTop: '3px'}} />
-                        <span style={{marginLeft: '0.3em'}}>12</span>
+                    <ContainerLayoutRow style={{ alignItems: 'center', marginLeft: '1em' }}>
+                        <ClockIcon width="1em" fill="#efefef" height="1em" style={{ marginTop: '3px' }} />
+                        <span style={{ marginLeft: '0.3em' }}>12</span>
                     </ContainerLayoutRow>
                 </ContainerLayoutRow>
             </StyledJumbothronListPage>

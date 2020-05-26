@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { Card, DefaultCard } from '../styled/cards';
 import { ContainerLayoutRow, ContainerLayoutColumn } from '../styled/CommonUtils';
 import { GroceriesIcon } from '../styled/Icons';
+import { useHistory } from 'react-router-dom';
 
 const StyledBoards = styled(DefaultCard)`
     min-width: 22em;
@@ -36,11 +37,18 @@ const StyledDescContainer = styled.div`
 `;
 
 const BoardSm = (props) => {
+
+    const history = useHistory();
+    const { boardDetails } = props;
+    const onBoardClicked = () => {
+        history.push(`/boards/${boardDetails.id}/lists`);
+    }
+
     return (
-        <StyledBoards>
+        <StyledBoards onClick={() => onBoardClicked()}>
             <StyledCardHeader className={styles.curvedCardBg}>
                 <ContainerLayoutRow style={{ padding: '1em', fontSize: '1.6em' }}>
-                    Sports
+                    {boardDetails.name}
                 </ContainerLayoutRow>
                 <ContainerLayoutRow alignment="end" style={{ paddingTop: '1em' }}>
                     <GroceriesIcon width='11em' height='11em' fill="#efefef"></GroceriesIcon>
@@ -48,7 +56,7 @@ const BoardSm = (props) => {
             </StyledCardHeader>
             <div>
                 <StyledDescContainer>
-                    Things That are imprtant for tomorrow's sports events in my School.
+                    {boardDetails.description}
                 </StyledDescContainer>
             </div>
         </StyledBoards>

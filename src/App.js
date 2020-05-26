@@ -17,12 +17,20 @@ function App() {
     return <Route exact path={path} component={component} />
   }
 
+  const getUnProtectedRoutes = (path, component, redirectPath, user) => {
+    if (user) {
+      return <Redirect exact to={redirectPath} />
+    }
+
+    return <Route exact path={path} component={component} />
+  }
+
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={HomePage} />
         {getProtectedRoute('/user/todo-board', TaskDetailsPage, authState.user)}
         {getProtectedRoute('/boards/:boardId/lists', ListItemPage, authState.user)}
+        {getUnProtectedRoutes('/', HomePage, '/user/todo-board', authState.user)}
       </Switch>
     </BrowserRouter>
   );

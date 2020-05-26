@@ -82,7 +82,7 @@ const ListContainer = (props) => {
     }
 
     const itemListJsx = listItemState.listItems.map((listItem, index) => {
-        return (<ListItem key={index} listItem={listItem} />)
+        return (<ListItem key={index} listItem={listItem} itemIndex={index} />)
     })
 
     return (

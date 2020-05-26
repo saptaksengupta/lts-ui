@@ -23,7 +23,13 @@
     #0c495f,
     #5c258d
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  animation-name: listItemAnim;
+  animation-duration: 100ms;
+  animation-delay: calc(var(--animation-order) * 100ms);
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
 }
+
 .timeLineContainer {
   position: relative;
   /* top: 255px; */
@@ -136,4 +142,19 @@
 
 .actions svg {
   margin: 5px;
+}
+
+
+
+/* animations */
+@keyframes listItemAnim {
+  from {
+    transform: translate(30%, 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
 }

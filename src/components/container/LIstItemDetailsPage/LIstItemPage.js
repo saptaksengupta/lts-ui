@@ -22,32 +22,36 @@ const ListItemPage = (props) => {
 
     const { authState } = useContext(AuthContext);
     const { boardId } = props.match.params;
+
     const [listItems, setListItems] = useState([]);
     const [boardDetails, setBoardDetails] = useState(null);
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         axios.get(`${getBaseUrl()}boards/${boardId}`, { params: { userId: authState.user.id } })
             .then(resp => {
                 setBoardDetails(resp.data.data.board);
                 setListItems(resp.data.data.board.listItems);
+                setIsLoading(false)
             }).catch((err) => {
                 console.log(err);
             })
     }, [boardId])
 
     return (
-        <Fragment>
+        isLoading ? 'loading...' : (<Fragment>
             <AuthContextProvider>
                 <BoardContextProvider>
                     <StyledListPageContainer>
-                        <ListInfoCard />
+                        <ListInfoCard boardDetails={boardDetails} />
                     </StyledListPageContainer>
                 </BoardContextProvider>
             </AuthContextProvider>
             <ListContextProvider>
                 <ListContainer listItems={listItems} currentBoard={boardDetails} />
             </ListContextProvider>
-        </Fragment>
+        </Fragment>)
+
     )
 }
 

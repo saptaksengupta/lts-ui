@@ -110,7 +110,7 @@ const ListItem = (props) => {
                 <div className={styles.timelineActionIcon}>
                     {listItemDetails.isDone ? <TickIcon height="1.6em" /> : <ClockIcon height="2em" />}
                 </div>
-                <StyledListDetailsCard className={styles.listCardFancyBackground}>
+                <StyledListDetailsCard className={styles.listCardFancyBackground} style={{"--animation-order": props.itemIndex}} >
                     <ContainerLayoutRow>
                         <div className={styles.listHeading} contentEditable={listItemDetails.isDone ? 'false' : 'true'} suppressContentEditableWarning={true} onBlur={e => onListItemDescChanged.bind(this, listItemDetails.id, e.target.innerHTML)()} style={{ flex: 1 }}>{listItemDetails.description}</div>
                         {/* <div className={styles.listDescription}>Some description and some extra text which is big</div> */}

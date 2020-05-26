@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useContext } from 'react';
 import CurvedHeader from './CurvedHeader';
 import LoginForm from './LoginForm';
 
-import { ContainerLayoutColumn, ContainerLayoutRow } from '../../styled/CommonUtils';
+import { ContainerLayoutRow } from '../../styled/CommonUtils';
 import { ResponsiveContext } from '../../../context/ResponsiveContext';
 import { SUPPORTED_DEVICES } from '../../../reducers/ResponsiveReducer'
 
