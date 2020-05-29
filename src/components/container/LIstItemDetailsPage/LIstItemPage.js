@@ -40,7 +40,7 @@ const ListItemPage = (props) => {
 
     return (
         isLoading ? 'loading...' : (<Fragment>
-            <ContainerLayoutColumn style={{minHeight: "100%", justifyContent: "flex-start"}}>
+            <ContainerLayoutColumn style={{ minHeight: "100%", justifyContent: "flex-start" }}>
                 <AuthContextProvider>
                     <BoardContextProvider>
                         <StyledListPageContainer>

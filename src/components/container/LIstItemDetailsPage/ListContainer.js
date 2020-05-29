@@ -7,7 +7,7 @@ import { ContainerLayoutRow, ContainerLayoutColumn } from '../../styled/CommonUt
 import ListContextProvider, { ListContext } from '../../../context/ListItemContext';
 import { LIST_ACTIONS } from '../../../reducers/ListReducer';
 import { getBaseUrl, getSocketBaseUrl, SOCKET_EVENTS } from '../../../Config';
-
+import { CircularButton } from '../../styled/Buttons';
 import { Card } from '../../styled/cards';
 import { AddIcon, TrashIcon } from '../../styled/Icons';
 import axios from 'axios';
@@ -61,8 +61,7 @@ const ListContainer = (props) => {
         socketCon.on(`${SOCKET_EVENTS.LIST_ITEM_STATUS_UPDATED}`, (data) => {
             const listItem = data.data;
             const listItemId = listItem.id;
-            debugger;
-            dispatch({type: LIST_ACTIONS.CHANGE_STATUS, payload: {listItemId, listItem} });
+            dispatch({ type: LIST_ACTIONS.CHANGE_STATUS, payload: { listItemId, listItem } });
         });
 
         return () => {
@@ -81,15 +80,24 @@ const ListContainer = (props) => {
         dispatch({ type: LIST_ACTIONS.SET_LIST, payload: { listItem } });
     }
 
+    const onAddListIconClicked = () => {
+        // TODO: Open Add list dialog...
+    }
+
     const itemListJsx = listItemState.listItems.map((listItem, index) => {
         return (<ListItem key={index} listItem={listItem} itemIndex={index} />)
     })
 
     return (
         <div className={styles.circularContainer}>
+            <div className={styles.addListBtnDiv}>
+                <CircularButton primary className={styles.addListBtn} onClick={() => {onAddListIconClicked()}}>
+                    <AddIcon height="1.5em" fill="#efefef"></AddIcon>
+                </CircularButton>
+            </div>
             <div className={styles.timeLineContainer}>
                 <ContainerLayoutRow>
-                    <ContainerLayoutColumn style={{ flex: 1, margin: '2.5em 2em 0 0' }} alignment="center">
+                    <ContainerLayoutColumn style={{ flex: 1, margin: '0.5em 2em 0 0' }} alignment="center">
                         {itemListJsx}
                     </ContainerLayoutColumn>
                 </ContainerLayoutRow>

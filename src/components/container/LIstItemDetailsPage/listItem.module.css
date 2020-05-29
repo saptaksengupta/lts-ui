@@ -7,7 +7,7 @@
 }
 
 .listHeader {
-  padding: 1em;
+  padding: 1em 0 1em 1em;
   width: auto;
 }
 
@@ -31,11 +31,6 @@
   animation-timing-function: ease-in-out;
 }
 
-.timeLineContainer {
-  /* position: relative; */
-  /* top: 255px; */
-  /* bottom: 2em; */
-}
 
 .addNewListContainer {
   position: fixed;
@@ -45,6 +40,23 @@
   left: 0;
   width: 100%;
   opacity: 0.8;
+}
+
+.addListBtnDiv {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -3em;
+  margin-right: 1.8em;
+  cursor: pointer;
+}
+
+.addListBtn:focus{
+  outline: none;
+}
+
+.addListBtn{
+  opacity: 0.9;
+  box-shadow: 1px 15px 50px 5px rgba(24,40,72,1);
 }
 
 .listDetails {
@@ -149,7 +161,7 @@
 .circularContainer {
   background-color: white;
   flex: 1;
-  border-top-right-radius: 100px;
+  border-top-left-radius: 100px;
   animation-name: slideUpContainer;
   animation-duration: 300ms;
   animation-timing-function: ease-in;

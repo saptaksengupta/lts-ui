@@ -24,7 +24,7 @@ export const StyledJumbothronListPage = styled.div`
     border-radius: 10px;
     width: auto;
     background: transparent;
-    padding: 0.6em;
+    padding: 0.6em 0 0.6em 0.6em;
 `;
 
 const ListInfoCard = (props) => {
@@ -41,7 +41,7 @@ const ListInfoCard = (props) => {
         <div className={styles.listHeader}>
             <StyledJumbothronListPage>
                 <ContainerLayoutColumn style={{ minHeight: '10em', paddingBottom: '0.6em' }}>
-                    <ContainerLayoutRow style={{ flex: '1', alignItems: "flex-start" }}>
+                    <ContainerLayoutRow style={{ flex: '1', alignItems: "flex-start", zIndex:'10' }}>
                         <ContainerLayoutRow align="start" style={{ alignItems: 'center' }}>
                             <div style={{ cursor: 'pointer' }} onClick={() => onBackArrowClicked()}>
                                 <LeftArrow width="1.8em" height="1.8em" fill="#efefef" />
@@ -49,19 +49,19 @@ const ListInfoCard = (props) => {
                             <span style={{ marginLeft: '0.2em', fontSize: '1.4em', fontWeight: 'bold', marginBottom: '6px' }}>{boardDetails.name}</span>
                         </ContainerLayoutRow>
                     </ContainerLayoutRow>
-                    <ContainerLayoutRow style={{ alignItems: 'flex-end' }}>
+                    <ContainerLayoutRow style={{ alignItems: 'flex-end', marginTop:'-50px' }}>
                         <ContainerLayoutRow style={{ alignItems: "center" }}>
-                            <CalendarIcon width="3.5em" height="3.5em" fill="#efefef" ></CalendarIcon>
+                            <CalendarIcon width="4em" height="4em" fill="#efefef" ></CalendarIcon>
                             <ContainerLayoutColumn >
                                 <div style={{ marginLeft: '0.4em', fontSize: '1em' }}>05:12 PM</div>
                                 <div>
                                     <div style={{ marginLeft: '0.4em', fontSize: '1em', textAlign: "start" }}>Monday</div>
-                                    <div style={{ marginLeft: '0.8em', marginTop: "0.2em", fontSize: '0.7em' }}>May 23, 2020</div>
+                                    <div style={{ marginLeft: '0.8em', marginTop: "0.2em", fontSize: '0.8em' }}>May 23, 2020</div>
                                 </div>
                             </ContainerLayoutColumn>
                         </ContainerLayoutRow>
-                        <ContainerLayoutRow alignment="end" style={{marginRight: '-100px'}}>
-                            <GroceriesIcon height="15em" fill="#efefef"/>
+                        <ContainerLayoutRow alignment="end" style={{overflow: 'hidden'}}>
+                            <GroceriesIcon height="15em" fill="#efefef" style={{marginRight: '-70px'}} />
                         </ContainerLayoutRow>
                     </ContainerLayoutRow>
                 </ContainerLayoutColumn>

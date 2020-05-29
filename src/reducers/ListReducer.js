@@ -21,7 +21,6 @@ export const ListReducer = (state, action) => {
                 currentBoard: action.payload.currentBoard
             };
         case LIST_ACTIONS.REMOVE_LIST:
-            debugger
             const final = {...state, listItems: getFilterdListItems(state, action)};
             return final;
         case LIST_ACTIONS.EDIT_DESCRIPTION:
