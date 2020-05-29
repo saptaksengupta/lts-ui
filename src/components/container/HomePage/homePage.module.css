@@ -47,7 +47,8 @@
 }
 
 .loginContainer {
-  min-width: 350px;
+  min-width: 320px;
+  max-width: 350px;
   animation: slideUp 1s ease forwards, glowUp 2s ease forwards;
 }
 

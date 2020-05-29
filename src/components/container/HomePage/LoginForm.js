@@ -35,7 +35,7 @@ const LoginForm = () => {
                     phone: userDet.phone
                 }
                 dispatch({ type: USER_ACTIONS.SET_USER, payload: { userDetails } })
-                history.push('/user/todo-board');
+                window.location.reload()
             }
         }).catch(() => {
 

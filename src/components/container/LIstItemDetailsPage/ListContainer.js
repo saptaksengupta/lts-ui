@@ -86,15 +86,15 @@ const ListContainer = (props) => {
     })
 
     return (
-        <div>
+        <div className={styles.circularContainer}>
             <div className={styles.timeLineContainer}>
                 <ContainerLayoutRow>
-                    <ContainerLayoutColumn style={{ flex: 1, margin: '2.5em 1em' }} alignment="center">
+                    <ContainerLayoutColumn style={{ flex: 1, margin: '2.5em 2em 0 0' }} alignment="center">
                         {itemListJsx}
                     </ContainerLayoutColumn>
                 </ContainerLayoutRow>
             </div>
-            <AddNewListForm className={styles.addNewListContainer}>
+            {/* <AddNewListForm className={styles.addNewListContainer}>
                 <ContainerLayoutRow>
                     <ContainerLayoutRow style={{ padding: '1em' }}>
                         <input type="text" placeholder="Let's add Something" className={styles.titleInput} value={newTodoDesc} onChange={(e) => { setNewTodoDesc(e.target.value) }} />
@@ -108,7 +108,7 @@ const ListContainer = (props) => {
                         </div>
                     </ContainerLayoutRow>
                 </ContainerLayoutRow>
-            </AddNewListForm>
+            </AddNewListForm> */}
         </div>
     )
 }

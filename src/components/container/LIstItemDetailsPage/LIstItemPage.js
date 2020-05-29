@@ -40,16 +40,18 @@ const ListItemPage = (props) => {
 
     return (
         isLoading ? 'loading...' : (<Fragment>
-            <AuthContextProvider>
-                <BoardContextProvider>
-                    <StyledListPageContainer>
-                        <ListInfoCard boardDetails={boardDetails} />
-                    </StyledListPageContainer>
-                </BoardContextProvider>
-            </AuthContextProvider>
-            <ListContextProvider>
-                <ListContainer listItems={listItems} currentBoard={boardDetails} />
-            </ListContextProvider>
+            <ContainerLayoutColumn style={{minHeight: "100%", justifyContent: "flex-start"}}>
+                <AuthContextProvider>
+                    <BoardContextProvider>
+                        <StyledListPageContainer>
+                            <ListInfoCard boardDetails={boardDetails} />
+                        </StyledListPageContainer>
+                    </BoardContextProvider>
+                </AuthContextProvider>
+                <ListContextProvider>
+                    <ListContainer listItems={listItems} currentBoard={boardDetails} />
+                </ListContextProvider>
+            </ContainerLayoutColumn>
         </Fragment>)
 
     )

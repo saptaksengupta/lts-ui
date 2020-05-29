@@ -28,9 +28,9 @@ const StyledListDetailsCard = styled(DefaultCard)`
     min-width: 76%;
     flex:1;
     max-width: 12em;
-    background:#242c2f66;
+    // background:#242c2f66;
+    background: #939adf;
     margin-left: 1em;
-
 `;
 
 const ListItem = (props) => {
@@ -80,7 +80,7 @@ const ListItem = (props) => {
             modifiedBy: authState.user.id,
             description: updatedDesc
         }).then(resp => {
-            if(resp.data.status == 200) {
+            if (resp.data.status == 200) {
                 console.log('TODO: SHOW SUCCESS ALERT')
             }
         }).catch(err => {
@@ -110,9 +110,14 @@ const ListItem = (props) => {
                 <div className={styles.timelineActionIcon}>
                     {listItemDetails.isDone ? <TickIcon height="1.6em" /> : <ClockIcon height="2em" />}
                 </div>
-                <StyledListDetailsCard className={styles.listCardFancyBackground} style={{"--animation-order": props.itemIndex}} >
+                <StyledListDetailsCard className={styles.listCardFancyBackground} style={{ "--animation-order": props.itemIndex }} >
                     <ContainerLayoutRow>
-                        <div className={styles.listHeading} contentEditable={listItemDetails.isDone ? 'false' : 'true'} suppressContentEditableWarning={true} onBlur={e => onListItemDescChanged.bind(this, listItemDetails.id, e.target.innerHTML)()} style={{ flex: 1 }}>{listItemDetails.description}</div>
+                        <div className={styles.listHeading} contentEditable={listItemDetails.isDone ? 'false' : 'true'}
+                            suppressContentEditableWarning={true}
+                            onBlur={e => onListItemDescChanged.bind(this, listItemDetails.id, e.target.innerHTML)()}
+                            style={{ flex: 1 }}>
+                            {listItemDetails.description}
+                        </div>
                         {/* <div className={styles.listDescription}>Some description and some extra text which is big</div> */}
                         <ContainerLayoutRow className={styles.listActions}>
                             {

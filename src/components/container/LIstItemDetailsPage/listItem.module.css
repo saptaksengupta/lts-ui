@@ -12,28 +12,29 @@
 }
 
 .listCardFancyBackground {
-  background: #5c258d; /* fallback for old browsers */
+  /* background: #5c258d; 
   background: -webkit-linear-gradient(
     to left,
     #0c495f,
     #5c258d
-  ); /* Chrome 10-25, Safari 5.1-6 */
+  ); 
   background: linear-gradient(
     to left,
     #0c495f,
     #5c258d
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  ); */
+  background: #939adf;
   animation-name: listItemAnim;
-  animation-duration: 100ms;
+  animation-duration: 500ms;
   animation-delay: calc(var(--animation-order) * 100ms);
   animation-fill-mode: both;
   animation-timing-function: ease-in-out;
 }
 
 .timeLineContainer {
-  position: relative;
+  /* position: relative; */
   /* top: 255px; */
-  bottom: 2em;
+  /* bottom: 2em; */
 }
 
 .addNewListContainer {
@@ -55,14 +56,15 @@
 .timelineActionIcon {
   position: absolute;
   left: 5em;
-  background: #9ba0e6;
+  /* background: #9ba0e6; */
+  background: white;
   width: 1.2em;
   height: 1.2em;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 3px solid #9ba0e6;
+  border: 3px solid white;
 }
 
 .time {
@@ -82,7 +84,7 @@
   flex: 1;
 }
 
-.listHeading:focus{
+.listHeading:focus {
   outline: none;
 }
 
@@ -90,16 +92,16 @@
   background-color: darkgray;
   opacity: 0.7;
 }
-.listIsDone .time{
+.listIsDone .time {
   color: green;
 }
 
-.listIsDone .listHeading{
+.listIsDone .listHeading {
   text-decoration: line-through;
   text-decoration-color: #182848;
 }
 
-.listIsDone .listDetails{
+.listIsDone .listDetails {
   border-left-color: green;
 }
 
@@ -144,12 +146,31 @@
   margin: 5px;
 }
 
+.circularContainer {
+  background-color: white;
+  flex: 1;
+  border-top-right-radius: 100px;
+  animation-name: slideUpContainer;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in;
+}
 
+@keyframes slideUpContainer {
+  from {
+    transform: translate(0, 20%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
 
 /* animations */
 @keyframes listItemAnim {
   from {
-    transform: translate(30%, 0);
+    transform: translate(10%, 0);
     opacity: 0;
   }
 
