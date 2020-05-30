@@ -290,7 +290,7 @@ export const TickIcon = (props) => {
 export const CalendarIcon = (props) => {
     return (
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            viewBox="0 0 58 58" enable-background="new 0 0 58 58" height={props.height} width={props.width} fill={props.fill} >
+            viewBox="0 0 58 58" style={{enableBackground: "new 0 0 58 58"}} height={props.height} width={props.width} fill={props.fill} >
             <g>
                 <path d="M26,2.5c1.654,0,3,1.346,3,3s-1.346,3-3,3c-0.553,0-1,0.447-1,1s0.447,1,1,1c2.757,0,5-2.243,5-5s-2.243-5-5-5
 		c-0.553,0-1,0.447-1,1S25.447,2.5,26,2.5z"/>
