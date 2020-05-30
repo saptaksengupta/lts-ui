@@ -13,6 +13,10 @@ import { AddIcon, TrashIcon } from '../../styled/Icons';
 import axios from 'axios';
 import { AuthContext } from '../../../context/AuthContext';
 
+import CustomModal from '../shared/modal/components/CustomModal';
+import AddListitemModal  from './AddListitemModal';
+import useModal from "../shared/modal/hooks/useModal";
+
 
 const AddNewListForm = styled(Card)`
     border-radius: 0px;
@@ -24,6 +28,8 @@ const ListContainer = (props) => {
     const [newTodoDesc, setNewTodoDesc] = useState('');
     const { listItemState, dispatch } = useContext(ListContext);
     const { currentBoard } = props;
+
+    const [modalOpen, setModalOpen, toggleModal] = useModal();
 
     const onTodoAddBtnClicked = () => {
         axios
@@ -82,6 +88,7 @@ const ListContainer = (props) => {
 
     const onAddListIconClicked = () => {
         // TODO: Open Add list dialog...
+        toggleModal()
     }
 
     const itemListJsx = listItemState.listItems.map((listItem, index) => {
@@ -102,6 +109,9 @@ const ListContainer = (props) => {
                     </ContainerLayoutColumn>
                 </ContainerLayoutRow>
             </div>
+            <CustomModal title="demo title" isshown={modalOpen} handleClose={() => {}}> 
+                <AddListitemModal></AddListitemModal>
+            </CustomModal>
             {/* <AddNewListForm className={styles.addNewListContainer}>
                 <ContainerLayoutRow>
                     <ContainerLayoutRow style={{ padding: '1em' }}>

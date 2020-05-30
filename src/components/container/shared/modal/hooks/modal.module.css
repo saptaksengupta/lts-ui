@@ -1,0 +1,7 @@
+.modalHide {
+    display: none;
+}
+
+.modalShow {
+    display: flex;
+}
