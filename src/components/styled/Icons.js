@@ -287,10 +287,50 @@ export const TickIcon = (props) => {
     )
 }
 
+export const CrossIcon = (props) => {
+    return (
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            viewBox="0 0 31.112 31.112" style={{ enableBackground: 'new 0 0 31.112 31.112' }} fill={props.fill} width={props.width} height={props.height}>
+            <polygon points="31.112,1.414 29.698,0 15.556,14.142 1.414,0 0,1.414 14.142,15.556 0,29.698 1.414,31.112 15.556,16.97 
+	29.698,31.112 31.112,29.698 16.97,15.556 "/>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+            <g>
+            </g>
+        </svg>
+    )
+}
+
 export const CalendarIcon = (props) => {
     return (
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            viewBox="0 0 58 58" style={{enableBackground: "new 0 0 58 58"}} height={props.height} width={props.width} fill={props.fill} >
+            viewBox="0 0 58 58" style={{ enableBackground: "new 0 0 58 58" }} height={props.height} width={props.width} fill={props.fill} >
             <g>
                 <path d="M26,2.5c1.654,0,3,1.346,3,3s-1.346,3-3,3c-0.553,0-1,0.447-1,1s0.447,1,1,1c2.757,0,5-2.243,5-5s-2.243-5-5-5
 		c-0.553,0-1,0.447-1,1S25.447,2.5,26,2.5z"/>
@@ -386,7 +426,7 @@ export const GroceriesIcon = (props) => {
 export const UserAvatar = (props) => {
     return (
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox='0 0 55 55'
-         style= {{ ...props.style, enableBackground: 'new 0 0 55 55' }} width={props.width} height={props.height} fill={props.fill} >
+            style={{ ...props.style, enableBackground: 'new 0 0 55 55' }} width={props.width} height={props.height} fill={props.fill} >
             <path d="M55,27.5C55,12.337,42.663,0,27.5,0S0,12.337,0,27.5c0,8.009,3.444,15.228,8.926,20.258l-0.026,0.023l0.892,0.752
 	c0.058,0.049,0.121,0.089,0.179,0.137c0.474,0.393,0.965,0.766,1.465,1.127c0.162,0.117,0.324,0.234,0.489,0.348
 	c0.534,0.368,1.082,0.717,1.642,1.048c0.122,0.072,0.245,0.142,0.368,0.212c0.613,0.349,1.239,0.678,1.88,0.98

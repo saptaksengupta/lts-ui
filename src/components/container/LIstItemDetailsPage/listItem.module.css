@@ -32,16 +32,6 @@
 }
 
 
-.addNewListContainer {
-  position: fixed;
-  z-index: 1000;
-  color: black;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  opacity: 0.8;
-}
-
 .addListBtnDiv {
   display: flex;
   justify-content: flex-end;
@@ -133,12 +123,12 @@
 }
 
 .titleInput {
-  border: none;
+  /* border: none; */
   font-size: 1em;
   width: 100%;
-  background: transparent;
+  /* background: transparent; */
   margin-bottom: 0.2em;
-  color: #efefef;
+  /* color: #efefef; */
 }
 
 .titleInput::placeholder {
@@ -167,9 +157,10 @@
   animation-timing-function: ease-in;
 }
 
-@keyframes slideUpContainer {
+/* animations */
+@keyframes listItemAnim {
   from {
-    transform: translate(0, 20%);
+    transform: translate(10%, 0);
     opacity: 0;
   }
 
@@ -179,10 +170,9 @@
   }
 }
 
-/* animations */
-@keyframes listItemAnim {
+@keyframes slideUpContainer {
   from {
-    transform: translate(10%, 0);
+    transform: translate(0, 20%);
     opacity: 0;
   }
 

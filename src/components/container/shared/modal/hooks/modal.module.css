@@ -1,7 +1,44 @@
+.modalWrapper {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 101;
+}
+
+.modalWrapper,
+.withBackDrop {
+  background-color: rgba(16, 15, 37, 0.3);
+}
+
 .modalHide {
-    display: none;
+  display: none;
 }
 
 .modalShow {
-    display: flex;
+  display: flex;
 }
+
+.modalContent {
+  animation-name: slideUpContainer;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in;
+}
+
+
+
+@keyframes slideUpContainer {
+    from {
+      transform: translate(0, 5%);
+      opacity: 0;
+    }
+  
+    to {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+  }

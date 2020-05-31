@@ -10,7 +10,6 @@ import { getBaseUrl, getSocketBaseUrl, SOCKET_EVENTS } from '../../../Config';
 import { CircularButton } from '../../styled/Buttons';
 import { Card } from '../../styled/cards';
 import { AddIcon, TrashIcon } from '../../styled/Icons';
-import axios from 'axios';
 import { AuthContext } from '../../../context/AuthContext';
 
 import CustomModal from '../shared/modal/components/CustomModal';
@@ -24,29 +23,11 @@ const AddNewListForm = styled(Card)`
 `;
 
 const ListContainer = (props) => {
-    const { authState } = useContext(AuthContext);
-    const [newTodoDesc, setNewTodoDesc] = useState('');
     const { listItemState, dispatch } = useContext(ListContext);
     const { currentBoard } = props;
 
     const [modalOpen, setModalOpen, toggleModal] = useModal();
 
-    const onTodoAddBtnClicked = () => {
-        axios
-            .post(`${getBaseUrl()}boards/${currentBoard.id}/list-items`, { userId: authState.user.id, description: newTodoDesc })
-            .then((resp) => {
-                if (resp.data.data) {
-                    const listItem = resp.data.data;
-                    // dispatch({ type: LIST_ACTIONS.SET_LIST, payload: { listItem } });
-                    dispatch({ type: LIST_ACTIONS.SET_CURRENT_BOARD, payload: { currentBoard: props.currentBoard } });
-                    setNewTodoDesc('');
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-
-    }
 
     useEffect(() => {
         const socketUrl = getSocketBaseUrl('list-and-boards');
@@ -109,24 +90,9 @@ const ListContainer = (props) => {
                     </ContainerLayoutColumn>
                 </ContainerLayoutRow>
             </div>
-            <CustomModal title="demo title" isshown={modalOpen} handleClose={() => {}}> 
-                <AddListitemModal></AddListitemModal>
+            <CustomModal title="Add List Item" isshown={modalOpen} handleClose={() => toggleModal()}> 
+                <AddListitemModal currentBoard={currentBoard} closeModal={toggleModal} ></AddListitemModal>
             </CustomModal>
-            {/* <AddNewListForm className={styles.addNewListContainer}>
-                <ContainerLayoutRow>
-                    <ContainerLayoutRow style={{ padding: '1em' }}>
-                        <input type="text" placeholder="Let's add Something" className={styles.titleInput} value={newTodoDesc} onChange={(e) => { setNewTodoDesc(e.target.value) }} />
-                    </ContainerLayoutRow>
-                    <ContainerLayoutRow className={styles.actions} >
-                        <div onClick={() => onTodoAddBtnClicked()}>
-                            <AddIcon style width="1.5em" height="1.5em" fill="#efefef" />
-                        </div>
-                        <div>
-                            <TrashIcon style width="1.5em" height="1.5em" fill="#efefef" />
-                        </div>
-                    </ContainerLayoutRow>
-                </ContainerLayoutRow>
-            </AddNewListForm> */}
         </div>
     )
 }
