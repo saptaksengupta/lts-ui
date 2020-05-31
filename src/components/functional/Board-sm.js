@@ -45,7 +45,7 @@ const BoardSm = (props) => {
     }
 
     return (
-        <StyledBoards onClick={() => onBoardClicked()}>
+        <StyledBoards className={styles.styledBoardCards} style={{ "--animation-order": props.itemIndex }} onClick={() => onBoardClicked()}>
             <StyledCardHeader className={styles.curvedCardBg}>
                 <ContainerLayoutRow style={{ padding: '1em', fontSize: '1.6em' }}>
                     {boardDetails.name}

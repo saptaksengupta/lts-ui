@@ -25,3 +25,24 @@
     background-size: cover;
     color: #efefef;
 }
+
+.styledBoardCards {
+    animation-name: boardAnim;
+    animation-duration: 500ms;
+    animation-delay: calc(var(--animation-order) * 50ms);
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+  }
+  
+  /* animations */
+  @keyframes boardAnim {
+    from {
+      transform: translate(0, 30%);
+      opacity: 0;
+    }
+  
+    to {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+  }

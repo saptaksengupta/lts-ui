@@ -49,11 +49,11 @@ const TasklBoard = () => {
     }, []);
 
 
-    const boardsArray = boards.map( (board) => {
+    const boardsArray = boards.map( (board, index) => {
         if (currentDevice === SUPPORTED_DEVICES.MOBILE || 
             currentDevice === SUPPORTED_DEVICES.LEARGE_PC || 
             currentDevice === SUPPORTED_DEVICES.SMALL_PC) {
-            return (<BoardSm boardDetails={board} key={board.id} />)
+            return (<BoardSm boardDetails={board} key={board.id}  itemIndex={index} />)
         } 
     });
 
