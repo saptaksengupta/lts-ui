@@ -13,6 +13,9 @@ import ListContextProvider, { ListContext } from '../../../context/ListItemConte
 import { LIST_ACTIONS } from '../../../reducers/ListReducer';
 import BoardContextProvider from '../../../context/BoardContext';
 
+import Loader from '../../../shared/loader/components/Loader';
+import useLoader from '../../../shared/loader/hooks/useLoader';
+
 const StyledListPageContainer = styled.div`   
     // margin: -2em;
     // width: 100%;
@@ -25,21 +28,27 @@ const ListItemPage = (props) => {
 
     const [listItems, setListItems] = useState([]);
     const [boardDetails, setBoardDetails] = useState(null);
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true);
+
+    const [isshown, showLoader, hideLoader] = useLoader();
 
     useEffect(() => {
+        showLoader();
         axios.get(`${getBaseUrl()}boards/${boardId}`, { params: { userId: authState.user.id } })
             .then(resp => {
                 setBoardDetails(resp.data.data.board);
                 setListItems(resp.data.data.board.listItems);
                 setIsLoading(false)
+                hideLoader();
             }).catch((err) => {
                 console.log(err);
             })
     }, [boardId])
 
     return (
-        isLoading ? 'loading...' : (<Fragment>
+        isLoading ? (
+            <Loader isshown={isLoading} ></Loader>
+        ) : (<Fragment>
             <ContainerLayoutColumn style={{ minHeight: "100%", justifyContent: "flex-start" }}>
                 <AuthContextProvider>
                     <BoardContextProvider>

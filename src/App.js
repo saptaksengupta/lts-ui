@@ -7,7 +7,6 @@ import HomePage from './components/container/HomePage/HomePage';
 import ListItemPage from './components/container/LIstItemDetailsPage/LIstItemPage';
 import { AuthContext } from './context/AuthContext';
 
-import Loader from './shared/loader/components/Loader';
 function App() {
 
   const { authState } = useContext(AuthContext);
@@ -26,7 +25,6 @@ function App() {
         {getProtectedRoute('/user/todo-board', TaskDetailsPage, authState.user)}
         {getProtectedRoute('/boards/:boardId/lists', ListItemPage, authState.user)}
       </Switch>
-      <Loader height="5em" width="5em"></Loader>
     </BrowserRouter>
   );
 }
