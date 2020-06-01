@@ -1,37 +1,37 @@
 .boardIcon {
-    height: 100%;
-    margin-top: -3em;
-    margin-left: -3em;
+  height: 100%;
+  margin-top: -3em;
+  margin-left: -3em;
 }
 
-.boardTitle{
-    font-size: 2em;
+.boardTitle {
+  font-size: 2em;
 }
 
 .boardDescription {
-    font-size: 0.9em;
-    font-weight: 300;
-    margin-top: 0.4em;
+  font-size: 0.9em;
+  font-weight: 300;
+  margin-top: 0.4em;
 }
 
 .titleInput {
-    border: none;
-    font-size: 2em;
-    width: 100%;
-    background: transparent;
-    margin-bottom: 0.2em;
-    color: #efefef;
+  border: none;
+  font-size: 2em;
+  width: 100%;
+  background: transparent;
+  margin-bottom: 0.2em;
+  color: #efefef;
 }
 
-.titleInput:focus, 
+.titleInput:focus,
 .descriptionInput:focus {
-    outline: none;
+  outline: none;
 }
 
 .descriptionInput {
-    border: none;
-    font-size: 0.9em;
-    font-weight: 300;
-    width: 100%;
-    background: transparent;
+  border: none;
+  font-size: 0.9em;
+  font-weight: 300;
+  width: 100%;
+  background: transparent;
 }

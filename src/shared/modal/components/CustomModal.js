@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 import styles from '../hooks/modal.module.css';
 
-import { ContainerLayoutColumn, ContainerLayoutRow } from '../../../../styled/CommonUtils';
-import { LeftArrow, CrossIcon } from '../../../../styled/Icons';
+import { ContainerLayoutColumn, ContainerLayoutRow } from '../../../components/styled/CommonUtils';
+import { LeftArrow, CrossIcon } from '../../../components/styled/Icons';
 import styled from 'styled-components';
 
 

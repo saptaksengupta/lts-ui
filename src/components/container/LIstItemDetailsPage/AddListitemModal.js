@@ -8,7 +8,7 @@ import { TrashIcon, TickIcon, AddIcon, CrossIcon } from '../../styled/Icons';
 import { ContainerLayoutColumn, ContainerLayoutRow } from '../../styled/CommonUtils';
 import { LtsTextBox, LtsHiddenTextBox } from '../../styled/Inputs';
 import { LIST_ACTIONS } from '../../../reducers/ListReducer';
-import  useModal from '../shared/modal/hooks/useModal';
+import  useModal from '../../../shared/modal/hooks/useModal';
 
 import { getBaseUrl } from '../../../Config';
 
@@ -23,8 +23,6 @@ const AddListitemModal = (props) => {
     const { authState } = useContext(AuthContext);
     const [newTodoDesc, setNewTodoDesc] = useState('');
     const [modalOpen, setModalOpen, toggleModal] = useModal();
-
-    console.log(props);
 
     const onTodoAddBtnClicked = () => {
         axios

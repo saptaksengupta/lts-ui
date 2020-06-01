@@ -12,9 +12,9 @@ import { Card } from '../../styled/cards';
 import { AddIcon, TrashIcon } from '../../styled/Icons';
 import { AuthContext } from '../../../context/AuthContext';
 
-import CustomModal from '../shared/modal/components/CustomModal';
+import CustomModal from '../../../shared/modal/components/CustomModal';
 import AddListitemModal  from './AddListitemModal';
-import useModal from "../shared/modal/hooks/useModal";
+import useModal from "../../../shared/modal/hooks/useModal";
 
 
 const AddNewListForm = styled(Card)`

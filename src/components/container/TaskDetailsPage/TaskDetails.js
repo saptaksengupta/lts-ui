@@ -8,6 +8,8 @@ import { DefaultButton } from '../../styled/Buttons';
 import { AddIcon } from '../../styled/Icons';
 import BoardContextProvider from '../../../context/BoardContext';
 
+import Loader from '../../../shared/loader/components/Loader';
+
 
 const CircularButton = styled(DefaultButton)`
     border-radius: 50%;
