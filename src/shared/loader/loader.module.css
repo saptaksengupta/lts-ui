@@ -11,13 +11,20 @@
   z-index: 102;
 }
 
+.loaderHide {
+  display: none;
+}
+
+.loaderShow {
+  display: flex;
+}
+
 .indicator {
   animation-name: rotateIndicator;
-  animation-duration: 3s;
+  animation-duration: 1s;
   animation-timing-function: ease-in;
   animation-iteration-count: infinite;
   transform-origin: center;
-
 }
 
 @keyframes rotateIndicator {
