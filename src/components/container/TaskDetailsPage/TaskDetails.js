@@ -7,9 +7,10 @@ import styled from 'styled-components';
 import { DefaultButton } from '../../styled/Buttons';
 import { AddIcon } from '../../styled/Icons';
 import BoardContextProvider from '../../../context/BoardContext';
+import AddBoardModal from './AddBoardModal';
 
-import Loader from '../../../shared/loader/components/Loader';
-
+import CustomModal from '../../../shared/modal/components/CustomModal';
+import useModal from "../../../shared/modal/hooks/useModal";
 
 const CircularButton = styled(DefaultButton)`
     border-radius: 50%;
@@ -25,8 +26,16 @@ const CircularButton = styled(DefaultButton)`
 `;
 
 const TaskDetails = () => {
+
+    const [modalOpen, setModalOpen, toggleModal] = useModal();
+
+
+    const onAddBoardIconClicked = () => {
+        toggleModal()
+    }
+
     return (
-        <div style={{minHeight: '100vh'}}>
+        <div style={{ minHeight: '100vh' }}>
             <BoardContextProvider>
                 <div className={styles.container}>
                     <NavigationBar />
@@ -34,11 +43,14 @@ const TaskDetails = () => {
                         <TasklBoard />
                     </div>
                 </div>
-                {/* <div className={styles.bottomRightContainer}>
+                <div className={styles.bottomRightContainer} onClick={() => onAddBoardIconClicked()}>
                     <CircularButton className={styles.circularPrimayBtn} primary>
-                        <AddIcon height="2em" width="2em" />
+                        <AddIcon height="1.5em" width="1.5em" />
                     </CircularButton>
-                </div> */}
+                </div>
+                <CustomModal width="550px" height="50%" title="Add List Item" isshown={modalOpen} handleClose={() => toggleModal()}>
+                    <AddBoardModal closeModal={toggleModal} closeModal={toggleModal} />
+                </CustomModal>
             </BoardContextProvider>
         </div>
     )

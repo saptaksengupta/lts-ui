@@ -54,7 +54,7 @@ const NavigationBar = () => {
                 <ContainerLayoutRow alignment="center" fullWitdth>
                     <StyledProfileInfo>
                         <div style={{ width: '100%', display: 'flex', flexDirection: "row", alignItems: "center" }}>
-                            <div style={{ fontSize: '3em', marginBottom: '0.1em', flex: "1" }}>Hello, </div>
+                            <div style={{ fontSize: '3em', marginBottom: '0.1em', flex: "1" }}>Hello </div>
                             <div>
                                 <AddIcon width="2.5em" heigh="2.5em" fill="#efefef" ></AddIcon>
                             </div>

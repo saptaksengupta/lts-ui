@@ -23,6 +23,13 @@ const StyledBoardContainerSm = styled(ContainerLayoutRow)`
     // padding-bottom: 2em;
 `
 
+const StyledEmptyBoardContainer = styled.div`
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
 
 const getBoardsByUserId = (userId, dispatch) => {
     const url = `${getBaseUrl()}users/${userId}/boards/`;
@@ -49,22 +56,33 @@ const TasklBoard = () => {
     }, []);
 
 
-    const boardsArray = boards.map( (board, index) => {
-        if (currentDevice === SUPPORTED_DEVICES.MOBILE || 
-            currentDevice === SUPPORTED_DEVICES.LEARGE_PC || 
+    const boardsArray = boards.map((board, index) => {
+        if (currentDevice === SUPPORTED_DEVICES.MOBILE ||
+            currentDevice === SUPPORTED_DEVICES.LEARGE_PC ||
             currentDevice === SUPPORTED_DEVICES.SMALL_PC) {
-            return (<BoardSm boardDetails={board} key={board.id}  itemIndex={index} />)
-        } 
+            return (<BoardSm boardDetails={board} key={board.id} itemIndex={index} />)
+        }
     });
 
 
     return (
         <Fragment>
-            {(currentDevice === SUPPORTED_DEVICES.MOBILE || currentDevice === SUPPORTED_DEVICES.LEARGE_PC || currentDevice === SUPPORTED_DEVICES.SMALL_PC)  ? (
-                <StyledBoardContainerSm>
-                    {boardsArray}
-                </StyledBoardContainerSm>
-            ) : null}
+            {(
+                (currentDevice === SUPPORTED_DEVICES.MOBILE ||
+                    currentDevice === SUPPORTED_DEVICES.LEARGE_PC ||
+                    currentDevice === SUPPORTED_DEVICES.SMALL_PC) &&
+                boardsArray.length > 0
+            ) ? (
+                    <StyledBoardContainerSm>
+                        {boardsArray}
+                    </StyledBoardContainerSm>
+                ) : (
+                    <StyledEmptyBoardContainer>
+                        <span style={{width: '250px', fontSize: '1em', textAlign: 'center', lineHeight: '1.5em'}}>
+                            It's Empty, Let's get started by adding your first work item.
+                        </span>
+                    </StyledEmptyBoardContainer>
+                )}
         </Fragment>
     )
 }

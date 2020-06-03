@@ -13,10 +13,13 @@ const Modal = styled.div``;
 
 const ModalContent = styled(ContainerLayoutColumn)`
     width: 25%;
-    height: 30%;
+    min-width: ${props => props.width ? props.width : '375px'};
     max-width: ${props => props.width ? props.width : '375px'};
+    min-height: ${props => props.height ? props.height : '30%'};
+    max-height: ${props => props.height ? props.height : '30%'};
     justify-content: flex-start;
     color: #efefef;
+    opacity:0.9;
 `;
 
 const ModalHeader = styled(ContainerLayoutColumn)`
@@ -25,7 +28,7 @@ const ModalHeader = styled(ContainerLayoutColumn)`
     background: white;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
-    padding: 0.5em 0.8em;
+    padding: 1em 0.8em;
 `;
 
 const ModalTitle = styled(ContainerLayoutRow)`
@@ -52,7 +55,7 @@ const CustomModal = (props) => {
     const modalClassNames = `${styles.withBackDrop} ${styles.modalWrapper} ${props.isshown ? styles.modalShow : styles.modalHide}`
     return ReactDOM.createPortal(
         <Modal className={modalClassNames}>
-            <ModalContent className={styles.modalContent}>
+            <ModalContent className={styles.modalContent} height={props.height} width={props.width}> 
                 <ModalHeader>
                     <ModalTitle>
                         <ContainerLayoutRow style={{width: '100%'}}>
@@ -76,7 +79,9 @@ CustomModal.propTypes = {
     children: PropTypes.element.isRequired,
     title: PropTypes.string.isRequired,
     isshown: PropTypes.bool.isRequired,
-    handleClose: PropTypes.func.isRequired
+    handleClose: PropTypes.func.isRequired,
+    width: PropTypes.string,
+    height: PropTypes.string
 }
 
 

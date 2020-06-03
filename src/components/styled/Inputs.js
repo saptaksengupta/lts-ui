@@ -17,6 +17,18 @@ export const LtsTextBox = styled.input`
 `;
 
 
+export const LtsHiddenTextArea = styled.textarea`
+    width: 99%;
+    border-radius: 5px;
+    border: 2px solid #182848;
+    font-size: 20px;
+    font-weight: 400;
+    color: #182848;
+    background: transparent;
+    rows: ${props => props.rows === '3' ? '' : '2'};
+    resize: none;
+`;
+
 export const LtsHiddenTextBox = styled(LtsTextBox).attrs({
     placeholder: ``
 })`

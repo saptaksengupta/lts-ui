@@ -1,48 +1,60 @@
 .container {
-    /* padding: 3em 4em; */
-    min-height: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    min-width: 100%;
+  /* padding: 3em 4em; */
+  min-height: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
 }
 
 .bottomRightContainer {
-    position: absolute;
-    top: 85%;
-    right: 5em;
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
 }
 
-.circularPrimayBtn svg{
-    fill: #efefef;
+.circularPrimayBtn svg {
+  fill: #efefef;
 }
 
-.curvedCardBg{
-    background-image: url('../../../images/Curved-card.svg');
-    min-height: 300px;
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: #efefef;
+.curvedCardBg {
+  background-image: url("../../../images/Curved-card.svg");
+  min-height: 300px;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #efefef;
 }
 
 .styledBoardCards {
-    animation-name: boardAnim;
-    animation-duration: 500ms;
-    animation-delay: calc(var(--animation-order) * 50ms);
-    animation-fill-mode: both;
-    animation-timing-function: ease-in-out;
+  animation-name: boardAnim;
+  animation-duration: 500ms;
+  animation-delay: calc(var(--animation-order) * 50ms);
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+
+.listActions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex: 0;
+}
+
+.listActions svg {
+  margin: 0 0.5em;
+  cursor: pointer;
+}
+
+/* animations */
+@keyframes boardAnim {
+  from {
+    transform: translate(0, 30%);
+    opacity: 0;
   }
-  
-  /* animations */
-  @keyframes boardAnim {
-    from {
-      transform: translate(0, 30%);
-      opacity: 0;
-    }
-  
-    to {
-      transform: translate(0, 0);
-      opacity: 1;
-    }
+
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
   }
+}
