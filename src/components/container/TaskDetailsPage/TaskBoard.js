@@ -1,6 +1,7 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
+import socketIOClient from 'socket.io-client';
 import axios from 'axios';
-import { getBaseUrl } from '../../../Config';
+import { getBaseUrl, getSocketBaseUrl, SOCKET_EVENTS } from '../../../Config';
 import styled from 'styled-components';
 import { DefaultContainerLayoutGrid, ContainerLayoutRow } from '../../styled/CommonUtils';
 import Board from '../../functional/Board';
@@ -10,6 +11,8 @@ import { BOARD_ACTIONS } from '../../../reducers/BoardReducer';
 import { ResponsiveContext } from '../../../context/ResponsiveContext';
 import { SUPPORTED_DEVICES } from '../../../reducers/ResponsiveReducer';
 import BoardSm from '../../functional/Board-sm';
+import Loader from '../../../shared/loader/components/Loader';
+import useLoader from '../../../shared/loader/hooks/useLoader'
 
 const StyledBoardContainer = styled(DefaultContainerLayoutGrid)`
 `;
@@ -31,28 +34,46 @@ const StyledEmptyBoardContainer = styled.div`
 `;
 
 
-const getBoardsByUserId = (userId, dispatch) => {
+const getBoardsByUserId = (userId, dispatch, setIsLoading, hideLoader) => {
+    setIsLoading(true);
     const url = `${getBaseUrl()}users/${userId}/boards/`;
     axios.get(url).then((resp) => {
         if (resp.data.data.length > 0) {
             const boards = resp.data.data;
+            setIsLoading(false);
+            hideLoader()
             boards.map(board => {
-                dispatch({ type: BOARD_ACTIONS.SET_BOARD, payload: board });
+                handleBoard(board, dispatch);
             });
         }
     }).catch((err) => {
         console.log(err);
     });
 }
+
+const handleBoard = (board, dispatch) => {
+    dispatch({ type: BOARD_ACTIONS.SET_BOARD, payload: board });
+}
+
 const TasklBoard = () => {
     const { authState } = useContext(AuthContext);
     const { boards, dispatch } = useContext(BoardContext);
     const { responsiveState } = useContext(ResponsiveContext);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isshown, showLoader, hideLoader] = useLoader();
     const currentDevice = responsiveState.device;
-    useEffect(() => {
-        // TODO: Fetch the user details, and set it inside authContext
-        getBoardsByUserId(authState.user.id, dispatch);
 
+    useEffect(() => {
+        const socketUrl = getSocketBaseUrl('list-and-boards');
+        const socketCon = socketIOClient(socketUrl);
+        socketCon.on(SOCKET_EVENTS.BOARD_ADDED, (data) => {
+            handleBoard(data.data, dispatch)
+        })
+    }, [])
+
+    useEffect(() => {
+        showLoader()
+        getBoardsByUserId(authState.user.id, dispatch, setIsLoading, hideLoader);
     }, []);
 
 
@@ -67,22 +88,18 @@ const TasklBoard = () => {
 
     return (
         <Fragment>
-            {(
-                (currentDevice === SUPPORTED_DEVICES.MOBILE ||
-                    currentDevice === SUPPORTED_DEVICES.LEARGE_PC ||
-                    currentDevice === SUPPORTED_DEVICES.SMALL_PC) &&
-                boardsArray.length > 0
-            ) ? (
+            {(boardsArray.length == 0 && !isLoading) ? (
+                <StyledEmptyBoardContainer>
+                    <span style={{ width: '250px', fontSize: '1em', textAlign: 'center', lineHeight: '1.5em' }}>
+                        It's Empty, Let's get started by adding your first work item.
+                </span>
+                </StyledEmptyBoardContainer>
+            ) : (
                     <StyledBoardContainerSm>
                         {boardsArray}
                     </StyledBoardContainerSm>
-                ) : (
-                    <StyledEmptyBoardContainer>
-                        <span style={{width: '250px', fontSize: '1em', textAlign: 'center', lineHeight: '1.5em'}}>
-                            It's Empty, Let's get started by adding your first work item.
-                        </span>
-                    </StyledEmptyBoardContainer>
                 )}
+            <Loader isshown={isLoading}/>
         </Fragment>
     )
 }

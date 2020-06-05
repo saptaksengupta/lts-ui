@@ -6,7 +6,7 @@ export const BOARD_ACTIONS = {
 export const BoardReducer = (state, action) => {
     switch (action.type) {
         case BOARD_ACTIONS.SET_BOARD:
-            return [...state, action.payload];
+            return [...state, action.payload].sort(sortBoards);
         case BOARD_ACTIONS.REMOVE_BOARD:
             return state.filter(board => board.id !== action.payload.boardId);
         default:
@@ -14,6 +14,4 @@ export const BoardReducer = (state, action) => {
     }
 };
 
-export const exceptThisBoard = () => {
-
-}
+const sortBoards = (a, b) => a.id < b.id ? 1 : -1;
