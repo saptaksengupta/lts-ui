@@ -46,7 +46,7 @@ const AddBoardModal = (props) => {
             </div>
             <div className={styles.listActions} style={{marginTop: '1em'}}>
                 {title && description ? (
-                    <div onClick={() => onBoardAddClicked()}>
+                    <div onClick={() => onBoardAddClicked(title, description)}>
                         <TickIcon style width="1.5em" height="1.5em" fill="black" />
                     </div>
                 ) : ''}
