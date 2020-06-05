@@ -19,7 +19,7 @@
 
 .curvedCardBg {
   background-image: url("../../../images/Curved-card.svg");
-  min-height: 300px;
+  min-height: 67%;
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
@@ -27,6 +27,8 @@
 }
 
 .styledBoardCards {
+  display: flex;
+  flex-direction: column;
   animation-name: boardAnim;
   animation-duration: 500ms;
   animation-delay: calc(var(--animation-order) * 50ms);
