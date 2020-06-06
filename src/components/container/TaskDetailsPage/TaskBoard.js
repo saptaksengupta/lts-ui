@@ -12,7 +12,8 @@ import { ResponsiveContext } from '../../../context/ResponsiveContext';
 import { SUPPORTED_DEVICES } from '../../../reducers/ResponsiveReducer';
 import BoardSm from '../../functional/Board-sm';
 import Loader from '../../../shared/loader/components/Loader';
-import useLoader from '../../../shared/loader/hooks/useLoader'
+import useLoader from '../../../shared/loader/hooks/useLoader';
+import { useDraggable } from '../../../shared/dragAndDrop/hooks/useDraggable';
 
 const StyledBoardContainer = styled(DefaultContainerLayoutGrid)`
 `;
@@ -61,7 +62,9 @@ const TasklBoard = () => {
     const { responsiveState } = useContext(ResponsiveContext);
     const [isLoading, setIsLoading] = useState(true);
     const [isshown, showLoader, hideLoader] = useLoader();
-    const currentDevice = responsiveState.device;
+    const [Draggable, DragOverlay] = useDraggable();
+
+    const [overlayFlag, setOverlayFlag] = useState(false);
 
     useEffect(() => {
         const socketUrl = getSocketBaseUrl('list-and-boards');
@@ -76,15 +79,33 @@ const TasklBoard = () => {
         getBoardsByUserId(authState.user.id, dispatch, setIsLoading, hideLoader);
     }, []);
 
+    const showOverlay = () => {
+        setOverlayFlag(true);
+    }
+
+    const hideOverlay = () => {
+        setOverlayFlag(false);
+    }
+
+    const onDrop = (data) => {
+        setOverlayFlag(false);
+    }
 
     const boardsArray = boards.map((board, index) => {
-        if (currentDevice === SUPPORTED_DEVICES.MOBILE ||
-            currentDevice === SUPPORTED_DEVICES.LEARGE_PC ||
-            currentDevice === SUPPORTED_DEVICES.SMALL_PC) {
-            return (<BoardSm boardDetails={board} key={board.id} itemIndex={index} />)
-        }
+        return (
+            <BoardSm boardDetails={board}
+                key={board.id}
+                itemIndex={index}
+                showOverlay={showOverlay}
+                hideOverlay={hideOverlay}
+            />
+        )
     });
 
+    const overlayProps = {
+        showFlag: overlayFlag,
+        onDrop: onDrop
+    }
 
     return (
         <Fragment>
@@ -99,7 +120,8 @@ const TasklBoard = () => {
                         {boardsArray}
                     </StyledBoardContainerSm>
                 )}
-            <Loader isshown={isLoading}/>
+            <Loader isshown={isLoading} />
+            <DragOverlay {...overlayProps}></DragOverlay>
         </Fragment>
     )
 }

@@ -8,7 +8,7 @@ import { ContainerLayoutRow, ContainerLayoutColumn } from '../styled/CommonUtils
 import { GroceriesIcon } from '../styled/Icons';
 import { useHistory } from 'react-router-dom';
 
-import useDraggable from '../../shared/dragAndDrop/hooks/useDraggable';
+import {useDraggable} from '../../shared/dragAndDrop/hooks/useDraggable';
 
 const StyledBoards = styled(DefaultCard)`
     min-width: 22em;
@@ -42,17 +42,24 @@ const BoardSm = (props) => {
 
     const [Draggable] = useDraggable();
     const history = useHistory();
-    const { boardDetails } = props;
+    const { boardDetails, showOverlay, hideOverlay } = props;
     const onBoardClicked = () => {
         history.push(`/boards/${boardDetails.id}/lists`);
     }
     
     const handleDragStart = () => {
-        console.log('From board, Drag start');
+        showOverlay()
     }
 
     const handleDragEnd = () => {
-        console.log('From Board, drag End');
+        hideOverlay();
+    }
+
+    const draggableProps = {
+        'data': {boardDetails},
+        'handleDragStart': handleDragStart,
+        'handleDragEnd': handleDragEnd,
+        'style': {height: '100%'}
     }
 
     return (
@@ -61,7 +68,7 @@ const BoardSm = (props) => {
                 className={styles.styledBoardCards}
                 style={{ "--animation-order": props.itemIndex }}
                 onClick={() => onBoardClicked()}>
-                <Draggable style={{height: '100%'}} handleDragStart={() => handleDragStart()} handleDragEnd={() => handleDragEnd()} >
+                <Draggable {...draggableProps} >
                     <StyledCardHeader className={styles.curvedCardBg}>
                         <ContainerLayoutRow style={{ padding: '1em', fontSize: '1.6em' }}>
                             {boardDetails.name}

@@ -30,7 +30,7 @@
   display: flex;
   flex-direction: column;
   animation-name: boardAnim;
-  animation-duration: 500ms;
+  animation-duration: 300ms;
   animation-delay: calc(var(--animation-order) * 50ms);
   animation-fill-mode: both;
   animation-timing-function: ease-in-out;
