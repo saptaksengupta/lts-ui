@@ -8,7 +8,7 @@ export const BoardReducer = (state, action) => {
         case BOARD_ACTIONS.SET_BOARD:
             return [...state, action.payload].sort(sortBoards);
         case BOARD_ACTIONS.REMOVE_BOARD:
-            return state.filter(board => board.id !== action.payload.boardId);
+            return state.filter(board => board.id !== Number(action.payload.boardId));
         default:
             return state;
     }

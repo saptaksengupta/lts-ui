@@ -16,5 +16,8 @@ export const SOCKET_EVENTS = {
     LIST_ITEM_STATUS_UPDATED: 'listItemUpdated',
     LIST_ITEM_ADDED: 'listItemAdded',
     LIST_ITEM_DELETED: 'listItemDeleted',
-    LIST_ITEM_DESC_UPDATED: 'listItemDescUpdated'
+    LIST_ITEM_DESC_UPDATED: 'listItemDescUpdated',
+    BOARD_ADDED: 'boardAdded',
+    BOARD_UPDATED: 'boardUpdated',
+    BOARD_DELETED: 'boardDeleted'
 }

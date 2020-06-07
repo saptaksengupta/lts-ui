@@ -63,9 +63,7 @@ export const useDraggable = () => {
             return null;
         }
         const handleDrop = (e, passedOnDropCallback) => {
-            const data = null;
-            if (data)
-                data = JSON.parse(e.dataTransfer.getData('data'));
+            const data = JSON.parse(e.dataTransfer.getData('data'));
 
             if (passedOnDropCallback)
                 passedOnDropCallback(data);

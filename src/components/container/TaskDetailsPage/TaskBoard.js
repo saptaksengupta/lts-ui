@@ -72,6 +72,10 @@ const TasklBoard = () => {
         socketCon.on(SOCKET_EVENTS.BOARD_ADDED, (data) => {
             handleBoard(data.data, dispatch)
         })
+
+        socketCon.on(SOCKET_EVENTS.BOARD_DELETED, (data) => {
+            dispatch({ type: BOARD_ACTIONS.REMOVE_BOARD, payload: { boardId: data.data } })
+        })
     }, [])
 
     useEffect(() => {
@@ -89,6 +93,23 @@ const TasklBoard = () => {
 
     const onDrop = (data) => {
         setOverlayFlag(false);
+        makeBoardRemoveReq(data.boardDetails.id);
+    }
+
+    const makeBoardRemoveReq = (boardId) => {
+        showLoader();
+        setIsLoading(true);
+        axios.delete(`${getBaseUrl()}boards/${boardId}`, { data : {modifiedBy: authState.user.id }} )
+            .then((resp) => {
+                hideLoader()
+                setIsLoading(false);
+                if (resp.data.status == 200) {
+                    console.log('deleted');
+                }
+            }).catch((err) => {
+                setIsLoading(false);
+                console.log(err);
+            })
     }
 
     const boardsArray = boards.map((board, index) => {
