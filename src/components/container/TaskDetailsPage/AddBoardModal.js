@@ -27,6 +27,8 @@ const AddBoardModal = (props) => {
                 if (resp.data.status == 200) {
                     setTitle('');
                     setDescription('');
+                    if (props.closeModal) 
+                        props.closeModal()
                 }
             }).catch((err) => {
                 console.log(err);

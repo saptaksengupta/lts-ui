@@ -1,7 +1,34 @@
-.dropArea{
-    min-height: 5em;
-    min-width: 5em;
-    border-radius: 50%;
-    padding: 1em;
-    border: 1px solid #281e5c;
+.overlayWrapper {
+  min-height: 6em;
+  min-width: 6em;
+  padding: 5px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px dotted #efefef;
+  animation: slideUpContainer 300ms ease-in forwards;
+}
+
+.dropArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4em;
+  min-width: 4em;
+  border-radius: 50%;
+  padding: 1em;
+  border: 1px solid gray;
+  box-shadow: 1px 15px 50px 5px rgba(24, 40, 72, 1);
+  background-color: gray;
+}
+
+@keyframes slideUpContainer {
+  from {
+    transform: translate(0, -20%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
 }

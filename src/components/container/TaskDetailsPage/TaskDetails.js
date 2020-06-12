@@ -49,7 +49,7 @@ const TaskDetails = () => {
                     </CircularButton>
                 </div>
                 <CustomModal width="550px" height="50%" title="Add List Item" isshown={modalOpen} handleClose={() => toggleModal()}>
-                    <AddBoardModal closeModal={toggleModal} closeModal={toggleModal} />
+                    <AddBoardModal closeModal={toggleModal} />
                 </CustomModal>
             </BoardContextProvider>
         </div>
