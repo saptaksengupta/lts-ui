@@ -10,7 +10,7 @@ const StyledDropZone = styled.div``;
 const StyledDragOverlay = styled.div`
         height: 5%;
         position: fixed;
-        top: 5%;
+        top: 8%;
         left: 48%;
         display: flex;
         flex-direction: column;
@@ -70,13 +70,20 @@ export const useDraggable = () => {
         }
 
         return (
-            <StyledDragOverlay className={styles.dropArea} >
-                <StyledDropZone
+
+            <StyledDragOverlay  >
+                <div
+                    id='drop-aria-circle'
+                    className={styles.overlayWrapper}
                     onDragOver={(e) => e.preventDefault()}
                     onDrop={(e) => { e.preventDefault(); handleDrop(e, onDrop) }}>
-                    <TrashIcon height="4em" width="4em"></TrashIcon>
-                </StyledDropZone>
-            </StyledDragOverlay>
+                    <StyledDropZone
+                        className={styles.dropArea}>
+                        <TrashIcon height="3em" width="3em" fill="#efefef"></TrashIcon>
+                    </StyledDropZone>
+                </div>
+            </StyledDragOverlay >
+
         )
     }
 

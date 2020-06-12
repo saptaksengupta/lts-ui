@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LtsTextBox = styled.input`
-    width: 100%;
+    // width: 100%;
     background: transparent;
     height: 65px;
     border-radius: 5px;
@@ -18,7 +18,7 @@ export const LtsTextBox = styled.input`
 
 
 export const LtsHiddenTextArea = styled.textarea`
-    width: 99%;
+    width: ${ props => props.width ? props.width : 'auto'};
     border-radius: 5px;
     border: 2px solid #182848;
     font-size: 20px;
@@ -32,6 +32,6 @@ export const LtsHiddenTextArea = styled.textarea`
 export const LtsHiddenTextBox = styled(LtsTextBox).attrs({
     placeholder: ``
 })`
-    width: 100%;
+    width: ${ props => props.width ? props.width : 'auto'};
     background: transparent;
 `;

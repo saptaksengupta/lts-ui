@@ -12,6 +12,8 @@ import AddBoardModal from './AddBoardModal';
 import CustomModal from '../../../shared/modal/components/CustomModal';
 import useModal from "../../../shared/modal/hooks/useModal";
 
+import { useBottomSheet } from '../../../shared/bottomSheet/hooks/useBottomSheet';
+
 const CircularButton = styled(DefaultButton)`
     border-radius: 50%;
     height: 4em;
@@ -28,11 +30,18 @@ const CircularButton = styled(DefaultButton)`
 const TaskDetails = () => {
 
     const [modalOpen, setModalOpen, toggleModal] = useModal();
+    const [BottomSheet, toggleBottomSheet] = useBottomSheet()
 
 
     const onAddBoardIconClicked = () => {
         toggleModal()
     }
+
+    // TODO: uncomment when responsive context 
+    // will be implemented
+    // const onAddBoardIconClicked = () => {
+    //     toggleBottomSheet()
+    // }
 
     return (
         <div style={{ minHeight: '100vh' }}>
@@ -49,8 +58,11 @@ const TaskDetails = () => {
                     </CircularButton>
                 </div>
                 <CustomModal width="550px" height="50%" title="Add List Item" isshown={modalOpen} handleClose={() => toggleModal()}>
-                    <AddBoardModal closeModal={toggleModal} />
+                    <AddBoardModal onClose={toggleModal} />
                 </CustomModal>
+                <BottomSheet>
+                    <AddBoardModal onClose={toggleBottomSheet} />
+                </BottomSheet>
             </BoardContextProvider>
         </div>
     )

@@ -4,7 +4,7 @@ import { Card, DefaultCard } from '../../styled/cards';
 import styled from 'styled-components';
 import { AuthContext } from '../../../context/AuthContext';
 import { StyledJumbothron } from "../LIstItemDetailsPage/ListInfoCard";
-import { AddIcon } from '../../styled/Icons';
+import { AddIcon, UserAvatar } from '../../styled/Icons';
 
 const StyledNavidationBar = styled(Card)`
     width: 100%;
@@ -54,12 +54,12 @@ const NavigationBar = () => {
                 <ContainerLayoutRow alignment="center" fullWitdth>
                     <StyledProfileInfo>
                         <div style={{ width: '100%', display: 'flex', flexDirection: "row", alignItems: "center" }}>
-                            <div style={{ fontSize: '3em', marginBottom: '0.1em', flex: "1" }}>Hello </div>
+                            <div style={{ fontSize: '3em', marginBottom: '0.1em', flex: "1" }}>Hello, <span style={{fontSize: '0.5em'}}>{getAuthUsername()}</span> </div>
                             <div>
-                                <AddIcon width="2.5em" heigh="2.5em" fill="#efefef" ></AddIcon>
+                                <UserAvatar width="2.5em" heigh="2.5em" fill="#efefef" ></UserAvatar>
                             </div>
                         </div>
-                        <div style={{ fontSize: '2.5em' }}>{ getAuthUsername() }</div>
+                        {/* <div style={{ fontSize: '2.5em' }}>{ getAuthUsername() }</div> */}
                         <div style={{ fontSize: '1.2em', fontWeight: '300', margin: '1em 0' }}>
                             We are here with your Task List So Far, Now You can share every "Board details" with your friends.
                             and get your Task Done as a whole team

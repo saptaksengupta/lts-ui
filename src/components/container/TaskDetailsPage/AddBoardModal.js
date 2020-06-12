@@ -27,8 +27,8 @@ const AddBoardModal = (props) => {
                 if (resp.data.status == 200) {
                     setTitle('');
                     setDescription('');
-                    if (props.closeModal) 
-                        props.closeModal()
+                    if (props.onClose) 
+                        props.onClose()
                 }
             }).catch((err) => {
                 console.log(err);
@@ -36,15 +36,15 @@ const AddBoardModal = (props) => {
     }
 
     return (
-        <div style={{ padding: '1em', width: '100%' }}>
+        <div>
             <div>
                 <label>Title</label>
-                <LtsHiddenTextBox placeholder="Desctiptioon" value={title} onChange={(e) => setTitle(e.target.value)} />
+                <LtsHiddenTextBox width="99%" placeholder="Desctiptioon" value={title} onChange={(e) => setTitle(e.target.value)} />
             </div>
 
             <div style={{ marginTop: '1em' }}>
                 <label>Description</label>
-                <LtsHiddenTextArea rows="8" value={description} onChange={(e) => setDescription(e.target.value)} />
+                <LtsHiddenTextArea rows="8" width="99%" value={description} onChange={(e) => setDescription(e.target.value)} />
             </div>
             <div className={styles.listActions} style={{marginTop: '1em'}}>
                 {title && description ? (
@@ -52,7 +52,7 @@ const AddBoardModal = (props) => {
                         <TickIcon style width="1.5em" height="1.5em" fill="black" />
                     </div>
                 ) : ''}
-                <div onClick={() => props.closeModal()}>
+                <div onClick={() => props.onClose()}>
                     <TrashIcon style width="1.5em" height="1.5em" fill="black" />
                 </div>
             </div>

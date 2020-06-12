@@ -43,22 +43,23 @@ const ModalCloseIcon = styled(ContainerLayoutRow)`
 `;
 
 const ModalBody = styled(ContainerLayoutRow)`
-    width: 100%;
     background: white;
     flex: 1;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     color:black;
+    padding: 1em;
+    width: auto;
 `;
 
 const CustomModal = (props) => {
     const modalClassNames = `${styles.withBackDrop} ${styles.modalWrapper} ${props.isshown ? styles.modalShow : styles.modalHide}`
     return ReactDOM.createPortal(
         <Modal className={modalClassNames}>
-            <ModalContent className={styles.modalContent} height={props.height} width={props.width}> 
+            <ModalContent className={styles.modalContent} height={props.height} width={props.width}>
                 <ModalHeader>
                     <ModalTitle>
-                        <ContainerLayoutRow style={{width: '100%'}}>
+                        <ContainerLayoutRow>
                             {props.title}
                         </ContainerLayoutRow>
                         <ModalCloseIcon onClick={() => { props.handleClose() }}>
@@ -67,7 +68,9 @@ const CustomModal = (props) => {
                     </ModalTitle>
                 </ModalHeader>
                 <ModalBody>
-                    {props.children}
+                    <div style={{width: '100%'}}>
+                        {props.children}
+                    </div>
                 </ModalBody>
             </ModalContent>
         </Modal>,
