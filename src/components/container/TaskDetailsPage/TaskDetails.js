@@ -58,7 +58,7 @@ const TaskDetails = () => {
             <BoardContextProvider>
                 <div className={styles.container}>
                     <NavigationBar />
-                    <div style={{ padding: '0em', marginBottom: '1em', flex: '1' }} >
+                    <div className={styles.sliderContainer} >
                         <TasklBoard />
                     </div>
                 </div>

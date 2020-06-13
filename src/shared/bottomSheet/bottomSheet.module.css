@@ -13,13 +13,21 @@
   position: absolute;
   bottom: 0;
   height: 36%;
-  min-width: 100%;
+  min-width: 92.5%;
   max-width: 100%;
   padding: 1em;
   box-shadow: 20px -50px 100px 5px rgba(24, 40, 72, 1);
   animation-name: slideUpContainer;
   animation-duration: 100ms;
   animation-timing-function: ease-in;
+}
+
+
+/* Tabs */
+@media only screen and (min-width: 600px) and (max-width: 900px){ 
+  .bottomSheet {
+    min-width: 96%;
+  }
 }
 
 @keyframes slideUpContainer {

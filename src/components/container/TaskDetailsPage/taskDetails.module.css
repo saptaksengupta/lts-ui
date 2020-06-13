@@ -13,6 +13,12 @@
   right: 1em;
 }
 
+.sliderContainer {
+  padding: 0em;
+  margin-bottom: 1em;
+  flex: 1;
+}
+
 .circularPrimayBtn svg {
   fill: #efefef;
 }
@@ -58,5 +64,13 @@
   to {
     transform: translate(0, 0);
     opacity: 1;
+  }
+}
+
+
+/* Bigger Devices */
+@media only screen and (min-width: 900px){ 
+  .sliderContainer {
+    padding: 0em 5em;
   }
 }
