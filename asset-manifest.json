@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/lts-ui/static/css/main.eb246645.chunk.css",
+    "main.js": "/lts-ui/static/js/main.1a836cb6.chunk.js",
+    "main.js.map": "/lts-ui/static/js/main.1a836cb6.chunk.js.map",
+    "runtime-main.js": "/lts-ui/static/js/runtime-main.743a6bf3.js",
+    "runtime-main.js.map": "/lts-ui/static/js/runtime-main.743a6bf3.js.map",
+    "static/js/2.9f613162.chunk.js": "/lts-ui/static/js/2.9f613162.chunk.js",
+    "static/js/2.9f613162.chunk.js.map": "/lts-ui/static/js/2.9f613162.chunk.js.map",
+    "index.html": "/lts-ui/index.html",
+    "precache-manifest.fb4b57059139e5b57eabe23a2d5b7b07.js": "/lts-ui/precache-manifest.fb4b57059139e5b57eabe23a2d5b7b07.js",
+    "service-worker.js": "/lts-ui/service-worker.js",
+    "static/css/main.eb246645.chunk.css.map": "/lts-ui/static/css/main.eb246645.chunk.css.map",
+    "static/js/2.9f613162.chunk.js.LICENSE.txt": "/lts-ui/static/js/2.9f613162.chunk.js.LICENSE.txt",
+    "static/media/taskDetails.module.css": "/lts-ui/static/media/Curved-card.47ac8c9f.svg",
+    "static/media/listItem.module.css": "/lts-ui/static/media/Liquid-Cheese.0f703486.svg",
+    "static/media/undraw_completed.svg": "/lts-ui/static/media/undraw_completed.093bfad2.svg",
+    "static/media/undraw_no_data_qbuo.svg": "/lts-ui/static/media/undraw_no_data_qbuo.6380db9c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.743a6bf3.js",
+    "static/js/2.9f613162.chunk.js",
+    "static/css/main.eb246645.chunk.css",
+    "static/js/main.1a836cb6.chunk.js"
+  ]
+}
