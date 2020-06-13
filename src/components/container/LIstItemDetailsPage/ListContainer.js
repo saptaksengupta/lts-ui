@@ -13,7 +13,7 @@ import { AddIcon, TrashIcon } from '../../styled/Icons';
 import { AuthContext } from '../../../context/AuthContext';
 
 import CustomModal from '../../../shared/modal/components/CustomModal';
-import AddListitemModal  from './AddListitemModal';
+import AddListitemModal from './AddListitemModal';
 import useModal from "../../../shared/modal/hooks/useModal";
 
 
@@ -76,10 +76,23 @@ const ListContainer = (props) => {
         return (<ListItem key={index} listItem={listItem} itemIndex={index} />)
     })
 
+    const bgImage = require('../../../images/undraw_no_data_qbuo.svg')
+
+    const getEmptyLayout = () => {
+        return listItemState.listItems.length == 0 && (
+            <div className={styles.emptyLayout}>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <img src={bgImage} height="150px"></img>
+                </div>
+                <div style={{ marginTop: '0.5em' }} >Let's add an item quickly by clicking on that Button.</div>
+            </div>
+        )
+    }
+
     return (
         <div className={styles.circularContainer}>
             <div className={styles.addListBtnDiv}>
-                <CircularButton primary className={styles.addListBtn} onClick={() => {onAddListIconClicked()}}>
+                <CircularButton primary className={styles.addListBtn} onClick={() => { onAddListIconClicked() }}>
                     <AddIcon height="1.5em" fill="#efefef"></AddIcon>
                 </CircularButton>
             </div>
@@ -88,9 +101,10 @@ const ListContainer = (props) => {
                     <ContainerLayoutColumn style={{ flex: 1, margin: '0.5em 2em 0 0' }} alignment="center">
                         {itemListJsx}
                     </ContainerLayoutColumn>
+                    {getEmptyLayout()}
                 </ContainerLayoutRow>
             </div>
-            <CustomModal title="Add List Item" isshown={modalOpen} handleClose={() => toggleModal()}> 
+            <CustomModal title="Add List Item" isshown={modalOpen} handleClose={() => toggleModal()}>
                 <AddListitemModal currentBoard={currentBoard} closeModal={toggleModal} ></AddListitemModal>
             </CustomModal>
         </div>

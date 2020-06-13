@@ -18,7 +18,7 @@ export const SUPPORTED_DEVICES = {
 }
 
 export const MEDIA_QUIRES = {
-    sm: '(max-width: 768px)',
+    sm: '(max-width: 800px)',
     lg: '(max-width: 990px)'
 }
 

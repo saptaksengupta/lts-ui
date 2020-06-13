@@ -15,7 +15,6 @@ import { getBaseUrl } from '../../../Config';
 const AddNewListForm = styled.div`
     max-width: 100%;
     width: 100%;
-    padding: 1em;
 `;
 
 const AddListitemModal = (props) => {
@@ -43,7 +42,7 @@ const AddListitemModal = (props) => {
             <div>
                 <div style={{ width: '100%' }}>
                     <label>Item Description</label>
-                    <LtsHiddenTextBox placeholder="Desctiptioon" value={newTodoDesc} onChange={(e) => { setNewTodoDesc(e.target.value) }} />
+                    <LtsHiddenTextBox placeholder="Desctiptioon" width="99%" value={newTodoDesc} onChange={(e) => { setNewTodoDesc(e.target.value) }} />
                     <ContainerLayoutRow style={{ marginTop: '2em' }} alignment="end" >
                         {newTodoDesc ? (
                             <div className={styles.listActions} onClick={() => onTodoAddBtnClicked()}>

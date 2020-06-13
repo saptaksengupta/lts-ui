@@ -44,7 +44,7 @@ const AddBoardModal = (props) => {
 
             <div style={{ marginTop: '1em' }}>
                 <label>Description</label>
-                <LtsHiddenTextArea rows="8" width="99%" value={description} onChange={(e) => setDescription(e.target.value)} />
+                <LtsHiddenTextArea rows="4" width="99%" value={description} onChange={(e) => setDescription(e.target.value)} />
             </div>
             <div className={styles.listActions} style={{marginTop: '1em'}}>
                 {title && description ? (

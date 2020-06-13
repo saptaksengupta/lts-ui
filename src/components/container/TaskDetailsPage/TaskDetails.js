@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import NavigationBar from './NavigationBar';
 import TasklBoard from './TaskBoard';
 import styles from './taskDetails.module.css';
@@ -6,6 +6,7 @@ import styles from './taskDetails.module.css';
 import styled from 'styled-components';
 import { DefaultButton } from '../../styled/Buttons';
 import { AddIcon } from '../../styled/Icons';
+import { ResponsiveContext } from '../../../context/ResponsiveContext';
 import BoardContextProvider from '../../../context/BoardContext';
 import AddBoardModal from './AddBoardModal';
 
@@ -13,6 +14,7 @@ import CustomModal from '../../../shared/modal/components/CustomModal';
 import useModal from "../../../shared/modal/hooks/useModal";
 
 import { useBottomSheet } from '../../../shared/bottomSheet/hooks/useBottomSheet';
+import { SUPPORTED_DEVICES } from '../../../reducers/ResponsiveReducer';
 
 const CircularButton = styled(DefaultButton)`
     border-radius: 50%;
@@ -29,12 +31,20 @@ const CircularButton = styled(DefaultButton)`
 
 const TaskDetails = () => {
 
+    const { responsiveState } = useContext(ResponsiveContext);
+    const currentDevice = responsiveState.device;
+
     const [modalOpen, setModalOpen, toggleModal] = useModal();
     const [BottomSheet, toggleBottomSheet] = useBottomSheet()
 
 
     const onAddBoardIconClicked = () => {
-        toggleModal()
+        if (currentDevice === SUPPORTED_DEVICES.MOBILE) {
+            toggleBottomSheet()
+        } else {
+            toggleModal()
+        }
+
     }
 
     // TODO: uncomment when responsive context 

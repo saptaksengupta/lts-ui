@@ -157,6 +157,21 @@
   animation-timing-function: ease-in;
 }
 
+.emptyLayout {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+  margin-top: 5em;
+  text-align: center;
+  color: gray;
+  font-size: 1.1em;
+  font-weight: 300;
+  padding: 1em;
+}
+
 /* animations */
 @keyframes listItemAnim {
   from {

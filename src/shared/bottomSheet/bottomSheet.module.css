@@ -12,11 +12,11 @@
   background-color: white;
   position: absolute;
   bottom: 0;
-  height: 40%;
-  min-width: 98%;
+  height: 36%;
+  min-width: 100%;
   max-width: 100%;
   padding: 1em;
-  box-shadow: 1px 15px 50px 5px rgba(24, 40, 72, 1);
+  box-shadow: 20px -50px 100px 5px rgba(24, 40, 72, 1);
   animation-name: slideUpContainer;
   animation-duration: 100ms;
   animation-timing-function: ease-in;
