@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LtsTextBox = styled.input`
-    // width: 100%;
+    width: ${ props => props.width ? props.width : 'auto'};
     background: transparent;
     height: 65px;
     border-radius: 5px;

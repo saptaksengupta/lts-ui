@@ -4,7 +4,7 @@
   min-width: 50%;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #3f3d56;
+  background-color: #1a2848;
   /* background: #5d4157; 
   background: -webkit-linear-gradient(
     to top,
@@ -95,4 +95,10 @@
 
 .inputGroup input {
   margin-top: 10px;
+}
+
+button.disabledBtn:disabled {
+  color: gray;
+  border: 1px solid gray;
+  cursor: not-allowed;
 }

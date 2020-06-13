@@ -19,9 +19,11 @@ const LoginForm = () => {
     const history = useHistory();
     const { authState, dispatch } = useContext(AuthContext);
     const [phone, setPhone] = useState('');
+    const [validPhone, setValidPhone] = useState(false);
+
+    const buttonClasses = `${validPhone == false ? styles.disabledBtn : ''}`;
+
     const onBoardClicked = (boardId) => {
-        // history.push(`/boards/${user.id}/lists`);
-            
         const loginUrl = `${getBaseUrl()}users/login`
         axios.post(loginUrl, {
             phone: phone
@@ -43,6 +45,20 @@ const LoginForm = () => {
 
     }
 
+    const onPhoneChange = (e) => {
+        const phoneNumber = e.target.value;
+        const pattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+        if (isValid(phoneNumber.trim(), pattern)) {
+            setValidPhone(true)
+        } else {
+            setValidPhone(false)
+        }
+    }
+
+    const isValid = (value, pattern) => {
+        return value.match(pattern)
+    }
+
     return (
         <ContainerLayoutColumn alignment="center" style={{ height: '100%', justifyContent: 'center', flex: 1 }}>
             <div className={styles.loginContainer}>
@@ -56,12 +72,19 @@ const LoginForm = () => {
                     </div> */}
                     <div className={styles.inputGroup}>
                         <label>It's Just your mobile number, will do the trick for you</label>
-                        <LtsTextBox onBlur={(e) => { setPhone(e.target.value) }} />
+                        <LtsTextBox width="99%" onBlur={(e) => { setPhone(e.target.value) }} onChange={(e) => onPhoneChange(e)} />
                     </div>
                 </ContainerLayoutColumn>
                 <div style={{ marginTop: '15px', width: '100%' }}>
                     <ContainerLayoutRow>
-                        <Button primary onClick={() => onBoardClicked()}> Let's Get Started </Button>
+                        <Button
+                            disabled={!validPhone}
+                            primary
+                            className={buttonClasses}
+                            onClick={() => onBoardClicked()}
+                        >
+                            Let's Get Started
+                        </Button>
                     </ContainerLayoutRow>
                 </div>
             </div>

@@ -1,11 +1,11 @@
-import React, { Component, createContext, useReducer } from 'react';
-import { ResponsiveReducer, SUPPORTED_DEVICES } from "../reducers/ResponsiveReducer";
+import React, { Component, createContext, useReducer, useEffect } from 'react';
+import { ResponsiveReducer, getDeviceBasedOnWindow, SUPPORTED_DEVICES } from "../reducers/ResponsiveReducer";
 
 export const ResponsiveContext = createContext();
 
 const ResponsiveContextProvider = (props) => {
     const initialState = {
-        device: SUPPORTED_DEVICES.SMALL_PC
+        device: getDeviceBasedOnWindow()
     }
 
     const [responsiveState, dispatch] = useReducer(ResponsiveReducer, initialState);

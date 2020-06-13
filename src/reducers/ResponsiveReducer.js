@@ -17,7 +17,13 @@ export const SUPPORTED_DEVICES = {
     LEARGE_PC: 'learge_pc'
 }
 
-export const getDeviceBasedOnWindow = (windowDetails) => {
-    return SUPPORTED_DEVICES.MOBILE;
+export const MEDIA_QUIRES = {
+    sm: '(max-width: 768px)',
+    lg: '(max-width: 990px)'
+}
+
+export const getDeviceBasedOnWindow = () => {
+    const isSmall = window.matchMedia(MEDIA_QUIRES.sm).matches;
+    return isSmall ? SUPPORTED_DEVICES.MOBILE : SUPPORTED_DEVICES.SMALL_PC;
 }
 
