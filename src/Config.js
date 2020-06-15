@@ -1,15 +1,25 @@
-// const API_BASE_URL = 'http://localhost:9999/';
-// const API_BASE_URL = 'http://192.168.43.134:9999/';
-const API_BASE_URL = 'http://192.168.43.105:9999/';
-const SOCKET_BASE_URL = 'http://192.168.43.105:9998/';
+import socketIOClient from 'socket.io-client';
+
+// const API_BASE_URL = 'http://192.168.43.104:9999/';
+// const SOCKET_BASE_URL = 'http://192.168.43.104:9998/';
+
+const API_BASE_URL = 'https://lts-api-prod.herokuapp.com/';
+const SOCKET_BASE_URL = 'https://lts-api-prod.herokuapp.com/websockets/';
+
 
 const API_PREFIX = "api/v1/";
 
 export const getBaseUrl = () => `${API_BASE_URL}${API_PREFIX}`;
 
-export const getSocketBaseUrl = (namespace) => `${SOCKET_BASE_URL}${namespace}`;
+export const getSocketBaseUrl = (namespace) => {
+    return `${SOCKET_BASE_URL}${namespace}`
+};
 
-export const APP_BASE_URL = `http://localhost:3000/`;
+export const getSocketConnection = (url) =>
+    socketIOClient(
+        getSocketBaseUrl(ACTIVE_NAMESPACES.LIST_AND_BOARDS),
+        { path: '/websockets', port: 9998 }
+    );
 
 
 export const SOCKET_EVENTS = {
@@ -20,4 +30,8 @@ export const SOCKET_EVENTS = {
     BOARD_ADDED: 'boardAdded',
     BOARD_UPDATED: 'boardUpdated',
     BOARD_DELETED: 'boardDeleted'
+}
+
+export const ACTIVE_NAMESPACES = {
+    LIST_AND_BOARDS: 'list-and-boards'
 }

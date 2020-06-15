@@ -1,7 +1,6 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
-import socketIOClient from 'socket.io-client';
 import axios from 'axios';
-import { getBaseUrl, getSocketBaseUrl, SOCKET_EVENTS } from '../../../Config';
+import { getBaseUrl, SOCKET_EVENTS, getSocketConnection } from '../../../Config';
 import styled from 'styled-components';
 import { DefaultContainerLayoutGrid, ContainerLayoutRow } from '../../styled/CommonUtils';
 import Board from '../../functional/Board';
@@ -41,12 +40,12 @@ const getBoardsByUserId = (userId, dispatch, setIsLoading, hideLoader) => {
     axios.get(url).then((resp) => {
         if (resp.data.data.length > 0) {
             const boards = resp.data.data;
-            setIsLoading(false);
-            hideLoader()
             boards.map(board => {
                 handleBoard(board, dispatch);
             });
         }
+        setIsLoading(false);
+        hideLoader()
     }).catch((err) => {
         console.log(err);
     });
@@ -67,8 +66,7 @@ const TasklBoard = () => {
     const [overlayFlag, setOverlayFlag] = useState(false);
 
     useEffect(() => {
-        const socketUrl = getSocketBaseUrl('list-and-boards');
-        const socketCon = socketIOClient(socketUrl);
+        const socketCon = getSocketConnection()
         socketCon.on(SOCKET_EVENTS.BOARD_ADDED, (data) => {
             handleBoard(data.data, dispatch)
         })
@@ -99,7 +97,7 @@ const TasklBoard = () => {
     const makeBoardRemoveReq = (boardId) => {
         showLoader();
         setIsLoading(true);
-        axios.delete(`${getBaseUrl()}boards/${boardId}`, { data : {modifiedBy: authState.user.id }} )
+        axios.delete(`${getBaseUrl()}boards/${boardId}`, { data: { modifiedBy: authState.user.id } })
             .then((resp) => {
                 hideLoader()
                 setIsLoading(false);

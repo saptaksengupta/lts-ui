@@ -11,7 +11,6 @@ import { AuthContext } from '../../context/AuthContext';
 import { BoardContext } from '../../context/BoardContext';
 import { BOARD_ACTIONS } from '../../reducers/BoardReducer';
 import { useHistory, Redirect } from 'react-router-dom';
-import { APP_BASE_URL } from '../../Config';
 
 const StyledBoardContainer = styled(ContainerLayoutColumn)`
     justify-content: flex-start;

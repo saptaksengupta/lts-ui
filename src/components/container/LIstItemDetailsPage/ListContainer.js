@@ -6,7 +6,7 @@ import ListItem from '../../functional/ListItem';
 import { ContainerLayoutRow, ContainerLayoutColumn } from '../../styled/CommonUtils';
 import ListContextProvider, { ListContext } from '../../../context/ListItemContext';
 import { LIST_ACTIONS } from '../../../reducers/ListReducer';
-import { getBaseUrl, getSocketBaseUrl, SOCKET_EVENTS } from '../../../Config';
+import { getSocketConnection, SOCKET_EVENTS } from '../../../Config';
 import { CircularButton } from '../../styled/Buttons';
 import { Card } from '../../styled/cards';
 import { AddIcon, TrashIcon } from '../../styled/Icons';
@@ -30,8 +30,7 @@ const ListContainer = (props) => {
 
 
     useEffect(() => {
-        const socketUrl = getSocketBaseUrl('list-and-boards');
-        const socketCon = socketIOClient(socketUrl);
+        const socketCon = getSocketConnection()
         socketCon.on(SOCKET_EVENTS.LIST_ITEM_ADDED, handleOnListAdd);
 
         socketCon.on(SOCKET_EVENTS.LIST_ITEM_DELETED, (data) => {
