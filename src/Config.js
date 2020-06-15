@@ -4,7 +4,7 @@ import socketIOClient from 'socket.io-client';
 // const SOCKET_BASE_URL = 'http://192.168.43.104:9998/';
 
 const API_BASE_URL = 'https://lts-api-prod.herokuapp.com/';
-const SOCKET_BASE_URL = 'https://lts-api-prod.herokuapp.com/websockets/';
+const SOCKET_BASE_URL = 'https://lts-api-prod.herokuapp.com/';
 
 
 const API_PREFIX = "api/v1/";
@@ -17,8 +17,7 @@ export const getSocketBaseUrl = (namespace) => {
 
 export const getSocketConnection = (url) =>
     socketIOClient(
-        getSocketBaseUrl(ACTIVE_NAMESPACES.LIST_AND_BOARDS),
-        { path: '/websockets', port: 9998 }
+        getSocketBaseUrl(ACTIVE_NAMESPACES.LIST_AND_BOARDS)
     );
 
 
