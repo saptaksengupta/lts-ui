@@ -1,0 +1,11 @@
+<svg width="353" height="295" viewBox="0 0 353 295" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Curved-card">
+<path id="Rectangle 12" d="M0.00341799 -0.000976562H352.003V294.999C352.003 294.999 -5.60906e-09 40 0.00341799 230.499C0.00683599 420.998 0.00341799 -0.000976562 0.00341799 -0.000976562Z" fill="url(#paint0_linear)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear" x1="176.003" y1="-0.000976563" x2="176.003" y2="294.999" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0F0548"/>
+<stop offset="1" stop-color="#150B53" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>
