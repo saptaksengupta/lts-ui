@@ -19,7 +19,7 @@ const ModalContent = styled(ContainerLayoutColumn)`
     max-height: ${props => props.height ? props.height : '30%'};
     justify-content: flex-start;
     color: #efefef;
-    opacity:0.9;
+    opacity:1;
 `;
 
 const ModalHeader = styled(ContainerLayoutColumn)`
@@ -56,23 +56,27 @@ const CustomModal = (props) => {
     const modalClassNames = `${styles.withBackDrop} ${styles.modalWrapper} ${props.isshown ? styles.modalShow : styles.modalHide}`
     return ReactDOM.createPortal(
         <Modal className={modalClassNames}>
-            <ModalContent className={styles.modalContent} height={props.height} width={props.width}>
-                <ModalHeader>
-                    <ModalTitle>
-                        <ContainerLayoutRow>
-                            {props.title}
-                        </ContainerLayoutRow>
-                        <ModalCloseIcon onClick={() => { props.handleClose() }}>
-                            <CrossIcon fill="black" width="1em" />
-                        </ModalCloseIcon>
-                    </ModalTitle>
-                </ModalHeader>
-                <ModalBody>
-                    <div style={{width: '100%'}}>
-                        {props.children}
-                    </div>
-                </ModalBody>
-            </ModalContent>
+            <div className={styles.modalWrapperHeader}>
+                <ModalCloseIcon onClick={() => { props.handleClose() }}>
+                    <CrossIcon fill="black" width="2em" />
+                </ModalCloseIcon>
+            </div>
+            <div className={styles.modalContentContainer}>
+                <ModalContent className={styles.modalContent} height={props.height} width={props.width}>
+                    <ModalHeader>
+                        <ModalTitle>
+                            <ContainerLayoutRow>
+                                {props.title}
+                            </ContainerLayoutRow>
+                        </ModalTitle>
+                    </ModalHeader>
+                    <ModalBody>
+                        <div style={{ width: '100%' }}>
+                            {props.children}
+                        </div>
+                    </ModalBody>
+                </ModalContent>
+            </div>
         </Modal>,
         document.querySelector("#modal-root")
     )

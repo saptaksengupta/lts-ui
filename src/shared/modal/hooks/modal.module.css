@@ -5,9 +5,23 @@
   top: 0;
   left: 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  flex-direction: column;
   z-index: 101;
+}
+
+.modalWrapperHeader {
+  height: 10%;
+  width: 100%;
+  padding-right: 2em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.modalContentContainer{
+  height: 90%;
 }
 
 .modalWrapper,
