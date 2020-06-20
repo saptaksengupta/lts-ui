@@ -20,6 +20,7 @@ const ModalContent = styled(ContainerLayoutColumn)`
     justify-content: flex-start;
     color: #efefef;
     opacity:1;
+    margin-top: 10em;
 `;
 
 const ModalHeader = styled(ContainerLayoutColumn)`
@@ -58,7 +59,7 @@ const CustomModal = (props) => {
         <Modal className={modalClassNames}>
             <div className={styles.modalWrapperHeader}>
                 <ModalCloseIcon onClick={() => { props.handleClose() }}>
-                    <CrossIcon fill="black" width="2em" />
+                    <CrossIcon fill="#efefef" width="2em" />
                 </ModalCloseIcon>
             </div>
             <div className={styles.modalContentContainer}>
