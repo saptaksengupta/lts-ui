@@ -148,6 +148,7 @@
   animation-name: slideUpContainer;
   animation-duration: 300ms;
   animation-timing-function: ease-in;
+  padding-left: 1em;
 }
 
 .emptyLayout {
@@ -187,5 +188,12 @@
   to {
     transform: translate(0, 0);
     opacity: 1;
+  }
+}
+
+/* Bigger Devices */
+@media only screen and (min-width: 900px){ 
+  .withListsContainer {
+    padding-left: 10em;
   }
 }

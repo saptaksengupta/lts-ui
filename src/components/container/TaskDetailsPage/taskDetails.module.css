@@ -19,6 +19,10 @@
   flex: 1;
 }
 
+.circularPrimayBtn{
+  box-shadow: 1px 15px 50px 5px rgba(24,40,72,1);
+}
+
 .circularPrimayBtn svg {
   fill: #efefef;
 }

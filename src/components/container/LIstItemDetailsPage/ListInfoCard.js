@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import styles from "./listItem.module.css";
 import { DefaultCard } from '../../styled/cards';
 import { ContainerLayoutRow, ContainerLayoutColumn, StyledAvatar } from '../../styled/CommonUtils';
 import { LeftArrow, CalendarIcon, TimeIcon, TickIcon, ClockIcon, GroceriesIcon } from '../../styled/Icons';
+
+import { DateTimeUtils } from '../../../shared/helpers/DateTimeHelper';
 
 const StyledSmallAvatar = styled(StyledAvatar)`
     height: 1.5em;
@@ -30,18 +32,18 @@ export const StyledJumbothronListPage = styled.div`
 const ListInfoCard = (props) => {
 
     const history = useHistory()
-    const { boardDetails } = props
+    const { boardDetails } = props;
+    const [currDate, setCurrDate] = useState(new Date());
 
     const onBackArrowClicked = () => [
         history.goBack()
     ]
 
-
     return (
         <div className={styles.listHeader}>
             <StyledJumbothronListPage>
                 <ContainerLayoutColumn style={{ minHeight: '10em', paddingBottom: '0.6em' }}>
-                    <ContainerLayoutRow style={{ flex: '1', alignItems: "flex-start", zIndex:'10' }}>
+                    <ContainerLayoutRow style={{ flex: '1', alignItems: "flex-start", zIndex: '10' }}>
                         <ContainerLayoutRow align="start" style={{ alignItems: 'center' }}>
                             <div style={{ cursor: 'pointer' }} onClick={() => onBackArrowClicked()}>
                                 <LeftArrow width="1.8em" height="1.8em" fill="#efefef" />
@@ -49,19 +51,22 @@ const ListInfoCard = (props) => {
                             <span style={{ marginLeft: '0.2em', fontSize: '1.4em', fontWeight: 'bold', marginBottom: '6px' }}>{boardDetails.name}</span>
                         </ContainerLayoutRow>
                     </ContainerLayoutRow>
-                    <ContainerLayoutRow style={{ alignItems: 'flex-end', marginTop:'-50px' }}>
+                    <ContainerLayoutRow style={{ alignItems: 'flex-end', marginTop: '-50px' }}>
                         <ContainerLayoutRow style={{ alignItems: "center" }}>
                             <CalendarIcon width="4em" height="4em" fill="#efefef" ></CalendarIcon>
                             <ContainerLayoutColumn >
-                                <div style={{ marginLeft: '0.4em', fontSize: '1em' }}>05:12 PM</div>
+                                <div style={{ marginLeft: '0.4em', fontSize: '1em' }}>
+                                    {DateTimeUtils.parseTime(currDate, DateTimeUtils.SUPPORTED_FORMATS.DATE_WITH_DAY_OF_WEEK_SMALL_SMALL_ORDINAL)}
+                                </div>
                                 <div>
-                                    <div style={{ marginLeft: '0.4em', fontSize: '1em', textAlign: "start" }}>Monday</div>
-                                    <div style={{ marginLeft: '0.8em', marginTop: "0.2em", fontSize: '0.8em' }}>May 23, 2020</div>
+                                    <div style={{ marginLeft: '0.4em', fontSize: '1em', textAlign: "start" }}>
+                                        {DateTimeUtils.parseTime(currDate, DateTimeUtils.SUPPORTED_FORMATS.TIME_IN_TWELVE_HOUR)}
+                                    </div>
                                 </div>
                             </ContainerLayoutColumn>
                         </ContainerLayoutRow>
-                        <ContainerLayoutRow alignment="end" style={{overflow: 'hidden'}}>
-                            <GroceriesIcon height="15em" fill="#efefef" style={{marginRight: '-70px'}} />
+                        <ContainerLayoutRow alignment="end" style={{ overflow: 'hidden' }}>
+                            <GroceriesIcon height="15em" fill="#465b8a" style={{ marginRight: '-70px' }} />
                         </ContainerLayoutRow>
                     </ContainerLayoutRow>
                 </ContainerLayoutColumn>

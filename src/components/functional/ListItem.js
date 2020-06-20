@@ -11,6 +11,7 @@ import { TickIcon, TrashIcon, ClockIcon, RevertIcon } from '../styled/Icons';
 import { LIST_ACTIONS } from '../../reducers/ListReducer';
 import { ListContext } from '../../context/ListItemContext';
 import { AuthContext } from '../../context/AuthContext';
+import { DateTimeUtils } from '../../shared/helpers/DateTimeHelper';
 
 import { getBaseUrl, getSocketBaseUrl, SOCKET_EVENTS } from '../../Config';
 
@@ -105,7 +106,7 @@ const ListItem = (props) => {
 
     return (
         <StyledListItem className={listItemDetails.isDone ? styles.listIsDone : ''} isDone={listItemDetails.isDone} alignment="center">
-            <div className={styles.time} >7:00 AM</div>
+            <div className={styles.time} >{DateTimeUtils.parseTime(listItemDetails.updatedAt, DateTimeUtils.SUPPORTED_FORMATS.TIME_IN_TWELVE_HOUR)}</div>
             <ContainerLayoutRow className={styles.listDetails} alignment="start">
                 <div className={styles.timelineActionIcon}>
                     {listItemDetails.isDone ? <TickIcon height="1.6em" /> : <ClockIcon height="2em" />}

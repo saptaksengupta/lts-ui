@@ -8,7 +8,7 @@ import { ContainerLayoutRow, ContainerLayoutColumn } from '../styled/CommonUtils
 import { GroceriesIcon } from '../styled/Icons';
 import { useHistory } from 'react-router-dom';
 
-import {useDraggable} from '../../shared/dragAndDrop/hooks/useDraggable';
+import { useDraggable } from '../../shared/dragAndDrop/hooks/useDraggable';
 
 const StyledBoards = styled(DefaultCard)`
     min-width: 22em;
@@ -56,10 +56,10 @@ const BoardSm = (props) => {
     }
 
     const draggableProps = {
-        'data': {boardDetails},
+        'data': { boardDetails },
         'handleDragStart': handleDragStart,
         'handleDragEnd': handleDragEnd,
-        'style': {height: '100%'}
+        'style': { height: '100%' }
     }
 
     return (

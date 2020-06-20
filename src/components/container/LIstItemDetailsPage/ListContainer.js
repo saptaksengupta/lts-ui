@@ -96,12 +96,14 @@ const ListContainer = (props) => {
                 </CircularButton>
             </div>
             <div className={styles.timeLineContainer}>
-                <ContainerLayoutRow>
-                    <ContainerLayoutColumn style={{ flex: 1, margin: '0.5em 2em 0 0' }} alignment="center">
+                <ContainerLayoutColumn>
+                    <ContainerLayoutColumn className={styles.withListsContainer} style={{ flex: 1, margin: '0.5em 2em 0 0' }} alignment="center">
                         {itemListJsx}
                     </ContainerLayoutColumn>
-                    {getEmptyLayout()}
-                </ContainerLayoutRow>
+                    <ContainerLayoutColumn>
+                        {getEmptyLayout()}
+                    </ContainerLayoutColumn>
+                </ContainerLayoutColumn>
             </div>
             <CustomModal title="Add List Item" isshown={modalOpen} handleClose={() => toggleModal()}>
                 <AddListitemModal currentBoard={currentBoard} closeModal={toggleModal} ></AddListitemModal>
