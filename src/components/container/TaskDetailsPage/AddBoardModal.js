@@ -18,8 +18,8 @@ const AddBoardModal = (props) => {
 
     useEffect(() => {
         if (options && options.data) {
-            setTitle(options.data.name);
-            setDescription(options.data.description);
+            setTitle(options.data.name.trim());
+            setDescription(options.data.description.trim());
         }
     }, [options])
 

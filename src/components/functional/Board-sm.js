@@ -45,7 +45,7 @@ const BoardSm = (props) => {
     const [Draggable] = useDraggable();
     const history = useHistory();
     const { boardDetails, showOverlay, hideOverlay } = props;
-    const longClikListener = useLongClick(props.toggleOverlay.bind(this, boardDetails), 1500);
+    const longClikListener = useLongClick(props.toggleOverlay.bind(this, boardDetails), 1000);
 
     const onBoardClicked = () => {
         history.push(`/boards/${boardDetails.id}/lists`);

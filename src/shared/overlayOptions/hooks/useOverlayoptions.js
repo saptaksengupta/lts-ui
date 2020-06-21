@@ -2,7 +2,7 @@ import React, { useState, Fragment, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import styles from '../overlay-options.module.css';
-
+import { TrashIcon, EditIcon } from '../../../components/styled/Icons';
 const useOverlayoptions = (initial = false) => {
     const [show, setShow] = useState(initial);
     const [options, setOptions] = useState(null);
@@ -35,10 +35,12 @@ const useOverlayoptions = (initial = false) => {
                         <div className={styles.overlayOptionsContainer} onClick={(e) => { toggleOverlay() }}>
                             <div className={styles.actionsContainer} onClick={(e) => e.stopPropagation()} >
                                 <div onClick={(e) => onBtnOneClicked()}>
-                                    <h3>{ options ? options.btnOne.name : ''}</h3>
+                                    <EditIcon height="3em" fill="#efefef" ></EditIcon>
+                                    <div>{ options ? options.btnOne.name : ''}</div>
                                 </div>
                                 <div onClick={(e) => onButtonTwoClicked()}>
-                                    <h3>{ options ? options.btnTwo.name : ''}</h3>
+                                    <TrashIcon height="3em" fill="#efefef" ></TrashIcon>
+                                    <div>{ options ? options.btnTwo.name : ''}</div>
                                 </div>
                             </div>
                         </div>
