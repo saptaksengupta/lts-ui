@@ -2,8 +2,10 @@ import React, { Fragment, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { getBaseUrl, SOCKET_EVENTS, getSocketConnection } from '../../../Config';
 import styled from 'styled-components';
+import { DefaultButton } from '../../styled/Buttons';
+import { AddIcon } from '../../styled/Icons';
+import styles from './taskDetails.module.css';
 import { DefaultContainerLayoutGrid, ContainerLayoutRow } from '../../styled/CommonUtils';
-import Board from '../../functional/Board';
 import { AuthContext } from '../../../context/AuthContext';
 import { BoardContext } from '../../../context/BoardContext';
 import { BOARD_ACTIONS } from '../../../reducers/BoardReducer';
@@ -13,9 +15,30 @@ import BoardSm from '../../functional/Board-sm';
 import Loader from '../../../shared/loader/components/Loader';
 import useLoader from '../../../shared/loader/hooks/useLoader';
 import { useDraggable } from '../../../shared/dragAndDrop/hooks/useDraggable';
+import useOverlayoptions from '../../../shared/overlayOptions/hooks/useOverlayoptions';
+import AddBoardModal from './AddBoardModal';
+
+import CustomModal from '../../../shared/modal/components/CustomModal';
+import useModal from "../../../shared/modal/hooks/useModal";
+
+import { useBottomSheet } from '../../../shared/bottomSheet/hooks/useBottomSheet';
 
 const StyledBoardContainer = styled(DefaultContainerLayoutGrid)`
 `;
+
+const CircularButton = styled(DefaultButton)`
+    border-radius: 50%;
+    height: 4em;
+    width: 4em;
+    background: #4b6cb7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #182848, #4b6cb7);
+    background: linear-gradient(to left, #182848, #4b6cb7);
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    cursor:pointer;
+`;
+
 
 const StyledBoardContainerSm = styled(ContainerLayoutRow)`
     overflow-x: auto;
@@ -62,8 +85,23 @@ const TasklBoard = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [isshown, showLoader, hideLoader] = useLoader();
     const [Draggable, DragOverlay] = useDraggable();
-
+    const [toggleOverlay, OverLayWithOptions] = useOverlayoptions(false);
+    const [modalOpen, setModalOpen, toggleModal] = useModal();
+    const [BottomSheet, toggleBottomSheet] = useBottomSheet()
     const [overlayFlag, setOverlayFlag] = useState(false);
+
+    const [boardModalOptionns, setBoardModalOptionns] = useState();
+
+    const currentDevice = responsiveState.device;
+
+    const onAddBoardIconClicked = () => {
+        setBoardModalOptionns({});
+        if (currentDevice === SUPPORTED_DEVICES.MOBILE) {
+            toggleBottomSheet()
+        } else {
+            toggleModal()
+        }
+    }
 
     useEffect(() => {
         const socketCon = getSocketConnection()
@@ -72,7 +110,15 @@ const TasklBoard = () => {
         })
 
         socketCon.on(SOCKET_EVENTS.BOARD_DELETED, (data) => {
-            dispatch({ type: BOARD_ACTIONS.REMOVE_BOARD, payload: { boardId: data.data } })
+            // dispatch({ type: BOARD_ACTIONS.REMOVE_BOARD, payload: { boardId: data.data } })
+            dispatch({type: BOARD_ACTIONS.EMPTY_BOARD, payload: {}});
+            getBoardsByUserId(authState.user.id, dispatch, setIsLoading, hideLoader);
+        })
+
+        socketCon.on(SOCKET_EVENTS.BOARD_UPDATED, (data) => {
+            // dispatch({ type: BOARD_ACTIONS.UPDATED_BOARD, payload: { board: data.data } })
+            dispatch({type: BOARD_ACTIONS.EMPTY_BOARD, payload: {}});
+            getBoardsByUserId(authState.user.id, dispatch, setIsLoading, hideLoader);
         })
     }, [])
 
@@ -110,6 +156,33 @@ const TasklBoard = () => {
             })
     }
 
+    const onModifiBoardClicked = (board) => {
+        setBoardModalOptionns({
+            update: true,
+            data: board
+        })
+        if (currentDevice === SUPPORTED_DEVICES.MOBILE) {
+            toggleBottomSheet()
+        } else {
+            toggleModal()
+        }
+    }
+
+    const onLongClicked = (board) => {
+        toggleOverlay({
+            btnOne: {
+                data: board,
+                name: `Update`,
+                callBack: onModifiBoardClicked
+            },
+            btnTwo: {
+                data: board.id,
+                name: `Delete`,
+                callBack: makeBoardRemoveReq
+            }
+        })
+    }
+
     const boardsArray = boards.map((board, index) => {
         return (
             <BoardSm boardDetails={board}
@@ -117,6 +190,7 @@ const TasklBoard = () => {
                 itemIndex={index}
                 showOverlay={showOverlay}
                 hideOverlay={hideOverlay}
+                toggleOverlay={() => onLongClicked(board)}
             />
         )
     });
@@ -139,8 +213,20 @@ const TasklBoard = () => {
                         {boardsArray}
                     </StyledBoardContainerSm>
                 )}
+            <div className={styles.bottomRightContainer} onClick={() => onAddBoardIconClicked()}>
+                <CircularButton className={styles.circularPrimayBtn} primary>
+                    <AddIcon height="1.5em" width="1.5em" />
+                </CircularButton>
+            </div>
+            <CustomModal width="550px" height="50%" title={boardModalOptionns && boardModalOptionns.update === true ? 'Update Board Details' : 'Add board'} isshown={modalOpen} handleClose={() => toggleModal()}>
+                <AddBoardModal onClose={toggleModal} options={boardModalOptionns} />
+            </CustomModal>
+            <BottomSheet>
+                <AddBoardModal onClose={toggleBottomSheet} options={boardModalOptionns} />
+            </BottomSheet>
             <Loader isshown={isLoading} />
             <DragOverlay {...overlayProps}></DragOverlay>
+            <OverLayWithOptions></OverLayWithOptions>
         </Fragment>
     )
 }

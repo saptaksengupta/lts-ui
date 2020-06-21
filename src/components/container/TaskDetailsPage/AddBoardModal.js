@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 
 import { AuthContext } from '../../../context/AuthContext';
@@ -13,21 +13,40 @@ const AddBoardModal = (props) => {
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-
+    const { options } = props;
     const { authState } = useContext(AuthContext);
 
-    const onBoardAddClicked = (name, description) => {
-        if (!name || !description) {
+    useEffect(() => {
+        if (options && options.data) {
+            setTitle(options.data.name);
+            setDescription(options.data.description);
+        }
+    }, [options])
+
+    const getRequestPropsBasedOnMode = () => {
+        let url = `${getBaseUrl()}boards/`;
+        let method = 'POST';
+        let data = { name: title, description: description, userId: authState.user.id }
+
+        if (options && options.update) {
+            url = `${getBaseUrl()}boards/${options.data.id}`;
+            method = 'PUT';
+            data['lastModifiedBy'] = authState.user.id;
+        }
+        return { url, method, data };
+    }
+
+    const onBoardAddClicked = () => {
+        const {url, method, data} = getRequestPropsBasedOnMode();
+        if (!data.name || !data.description) {
             return false;
         }
-        const userId = authState.user.id;
-        const addBoardUrl = `${getBaseUrl()}boards/`;
-        axios.post(addBoardUrl, { name, description, userId })
+        axios({ url: url, method: method, data: data})
             .then((resp) => {
                 if (resp.data.status == 200) {
                     setTitle('');
                     setDescription('');
-                    if (props.onClose) 
+                    if (props.onClose)
                         props.onClose()
                 }
             }).catch((err) => {
@@ -46,9 +65,9 @@ const AddBoardModal = (props) => {
                 <label>Description</label>
                 <LtsHiddenTextArea rows="4" width="99%" value={description} onChange={(e) => setDescription(e.target.value)} />
             </div>
-            <div className={styles.listActions} style={{marginTop: '1em'}}>
+            <div className={styles.listActions} style={{ marginTop: '1em' }}>
                 {title && description ? (
-                    <div onClick={() => onBoardAddClicked(title, description)}>
+                    <div onClick={() => onBoardAddClicked()}>
                         <TickIcon style width="1.5em" height="1.5em" fill="black" />
                     </div>
                 ) : ''}

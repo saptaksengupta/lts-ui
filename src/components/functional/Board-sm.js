@@ -10,6 +10,8 @@ import { useHistory } from 'react-router-dom';
 
 import { useDraggable } from '../../shared/dragAndDrop/hooks/useDraggable';
 
+import { useLongClick } from "../../shared/hooks/LongClick";
+
 const StyledBoards = styled(DefaultCard)`
     min-width: 22em;
     max-width: 22em;
@@ -43,10 +45,12 @@ const BoardSm = (props) => {
     const [Draggable] = useDraggable();
     const history = useHistory();
     const { boardDetails, showOverlay, hideOverlay } = props;
+    const longClikListener = useLongClick(props.toggleOverlay.bind(this, boardDetails), 1500);
+
     const onBoardClicked = () => {
         history.push(`/boards/${boardDetails.id}/lists`);
     }
-    
+
     const handleDragStart = () => {
         showOverlay()
     }
@@ -55,34 +59,26 @@ const BoardSm = (props) => {
         hideOverlay();
     }
 
-    const draggableProps = {
-        'data': { boardDetails },
-        'handleDragStart': handleDragStart,
-        'handleDragEnd': handleDragEnd,
-        'style': { height: '100%' }
-    }
-
     return (
         <React.Fragment>
             <StyledBoards
                 className={styles.styledBoardCards}
                 style={{ "--animation-order": props.itemIndex }}
-                onClick={() => onBoardClicked()}>
-                <Draggable {...draggableProps} >
-                    <StyledCardHeader className={styles.curvedCardBg}>
-                        <ContainerLayoutRow style={{ padding: '1em', fontSize: '1.6em' }}>
-                            {boardDetails.name}
-                        </ContainerLayoutRow>
-                        <ContainerLayoutRow alignment="end" style={{ paddingTop: '1em' }}>
-                            <GroceriesIcon width='11em' height='11em' fill="#efefef"></GroceriesIcon>
-                        </ContainerLayoutRow>
-                    </StyledCardHeader>
-                    <div style={{ height: '33%' }}>
-                        <StyledDescContainer>
-                            {boardDetails.description}
-                        </StyledDescContainer>
-                    </div>
-                </Draggable>
+                onClick={() => onBoardClicked()}
+                {...longClikListener}>
+                <StyledCardHeader className={styles.curvedCardBg}>
+                    <ContainerLayoutRow style={{ padding: '1em', fontSize: '1.6em' }}>
+                        {boardDetails.name}
+                    </ContainerLayoutRow>
+                    <ContainerLayoutRow alignment="end" style={{ paddingTop: '1em' }}>
+                        <GroceriesIcon width='11em' height='11em' fill="#efefef"></GroceriesIcon>
+                    </ContainerLayoutRow>
+                </StyledCardHeader>
+                <div style={{ height: '33%' }}>
+                    <StyledDescContainer>
+                        {boardDetails.description}
+                    </StyledDescContainer>
+                </div>
             </StyledBoards>
         </React.Fragment>
     )
