@@ -74,7 +74,7 @@ const BoardSm = (props) => {
                         <GroceriesIcon width='11em' height='11em' fill="#efefef"></GroceriesIcon>
                     </ContainerLayoutRow>
                 </StyledCardHeader>
-                <div style={{ height: '33%' }}>
+                <div className={styles.boardDescription} style={{ height: '33%' }}>
                     <StyledDescContainer>
                         {boardDetails.description}
                     </StyledDescContainer>

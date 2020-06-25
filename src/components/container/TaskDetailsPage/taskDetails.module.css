@@ -19,8 +19,8 @@
   flex: 1;
 }
 
-.circularPrimayBtn{
-  box-shadow: 1px 15px 50px 5px rgba(24,40,72,1);
+.circularPrimayBtn {
+  box-shadow: 1px 15px 50px 5px rgba(24, 40, 72, 1);
 }
 
 .circularPrimayBtn svg {
@@ -44,6 +44,13 @@
   animation-delay: calc(var(--animation-order) * 50ms);
   animation-fill-mode: both;
   animation-timing-function: ease-in-out;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 .listActions {
@@ -71,9 +78,8 @@
   }
 }
 
-
 /* Bigger Devices */
-@media only screen and (min-width: 900px){ 
+@media only screen and (min-width: 900px) {
   .sliderContainer {
     padding: 0em 5em;
   }
